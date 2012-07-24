@@ -7,7 +7,7 @@ if($_SESSION['username'] == ""){
 
 echo '<pre>';
 
-$last_line = system('sudo rpi-update', $retval);
+$last_line = system('sudo rpi-update ; sudo ldconfig', $retval);
 
 // Printing additional info
 echo '
