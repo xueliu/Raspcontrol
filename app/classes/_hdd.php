@@ -21,23 +21,44 @@
 				$used = $total - $free;
 				$percentage = round($used / $total * 100);
 				
-				
 				if($percentage > '80'){
-				echo '
-				<div style="float:left"><img src="app/images/sd.png" align="middle"> SD Card <font color="red"> (Warning)</font>:
-				<br/><br/><div class="graph"><strong class="barGreen" style="width:'.$percentage.'%;">'.$percentage.'%</strong></div> &nbsp; &nbsp;  <div class="clear"></div>; '; 
-			}else{
-				 echo '
-				 <div style="float:left"><img src="app/images/sd.png" align="middle"> SD Card <font color="green"> (OK)</font>:
-				 <br/><div class="graph"><strong class="barGreen" style="width:'.$percentage.'%;">'.$percentage.'%</strong></div> &nbsp; &nbsp;  <div class="clear"></div>'; 
-			}
+			    $warning = "<font color=\"red\"> (Warning)</font>";
+			    $bar = "barAmber";
+	          } else {
+	            $warning = "<font color=\"green\"> (OK)</font>";
+	            $bar = "barGreen";
+	          } 
+				?>
+			
+				<div class="sdIcon">
+					<img src="app/images/sd.png" align="middle"> 
+				</div>
+				
+				<div class="sdTitle">
+					SD Card <?php echo $warning ?>
+				</div>
+				
+				<div class="sdText">
+					<div class="graph">
+						<strong class="<?php echo $bar; ?>" style="width:<?php echo $percentage ?>%;"><?php echo $percentage ?>%</strong>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<br/>
+				
+				Total: <strong><?php echo $total ?></strong> GB &middot
+				Free: <strong><?php echo $free ?></strong> GB
+				
+				</div>
+						
+				<div class="clear"></div>
+			
 				
 				
-				echo "<br/>Total: <strong>".$total."</strong> GB &middot ";
-				echo "Free: <strong>".$free."</strong> GB";
-				echo "</div>";
 				
 				
+<?php				
 		}
 		}
 ?>
