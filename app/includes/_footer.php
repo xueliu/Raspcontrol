@@ -7,7 +7,7 @@
             require('app/classes/_versionCheck.php'); 
             
             if($_SESSION['username'] == ""){}else{
-	            echo '&middot; <a href="app/classes/_logout.php">Logout</a> &middot ';
+	            echo '&middot; <a href="app/classes/_logout.php">Logout</a>';
 				$versionCheck = new versionCheck; $checkVersion = $versionCheck->checkVersion();
             }
             ?>
