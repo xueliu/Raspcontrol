@@ -40,23 +40,7 @@ if($_SESSION['username'] == ""){
         	
         	<div class="clear"></div>
         	
-        	<br/><br/>
-
-        	
-        	<center>
-        		Mission Control:<br/><br/> 
-        		<button onclick="rebootWarn()" class="minimal">Reboot Rasberry Pi</button> <a href="app/commands/_updatesources.php"><button class="minimal">Update Sources</button></a><a href="app/commands/_upgradepackages.php"><button class="minimal">Upgrade Packages</button></a><a href="app/commands/_autoremove.php"><button class="minimal">Autoremove Packages</button></a>
-                
-                <?php
-                if (file_exists("/usr/bin/rpi-update")) {
-                    echo "<a href=\"app/commands/_updatefirmware.php\"><button class=\"minimal\">Update Firmware</button></a>";
-                } else {
-                    echo "<a href=\"app/commands/_installfirmware.php\"><button class=\"minimal\">Install Firmware Updater</button></a>";
-                }
-                ?>
-                
-        	</center>
-        	
+        	<br/><br/>        	
        	</div>
        	<br/><br/>
     </div>

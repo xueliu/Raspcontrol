@@ -25,6 +25,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: Arial;
 }
 ol, ul {
 	list-style: none;
@@ -49,28 +50,68 @@ body{
 
 
 h1{
-	color: #eeeeee;
-	font-size: 20px;
+	color: #FFFFFF;
+	font-size: 42px;
+	letter-spacing: -1px;
 	font-family: Arial;
 }
 
 h2{
 	padding-top: 1px;
-	color: #c0c0c0;
+	padding-left: 90px;
+	color: #c7c7c7;
 	font-size: 12px;
 	font-family: Arial;
 }
 
 #topContainer{
-	background-color: #3f3f3f;
+	background: #464646; /* Old browsers */
+	background: -moz-linear-gradient(top, #464646 0%, #303130 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#464646), color-stop(100%,#303130)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #464646 0%,#303130 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #464646 0%,#303130 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #464646 0%,#303130 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #464646 0%,#303130 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#464646', endColorstr='#303130',GradientType=0 ); /* IE6-9 */
 	border-bottom: 1px solid #000000;
-	height: 100px;
+	height: 120px;
 }
 
 .topWrapper{
 	margin: auto;
 	width: 900px;
 	padding-top: 35px;
+}
+
+#subNavContainer{
+	background: #424242; /* Old browsers */
+	border-bottom: 1px solid #000000;
+	height: 30px;
+}
+
+.subNavWrapper{
+	margin: 0px auto;
+	width: 900px;
+}
+
+.subNavButton{
+	color: #FFFFFF;
+	background-color: #313131;
+	height: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	float: left;
+	margin-right: 10px;
+}
+
+.subNavButton:hover{
+	color: #FFFFFF;
+	background-color: #626161;
+	height: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	float: left;
+	margin-right: 10px;
 }
 
 #firstBlockContainer{

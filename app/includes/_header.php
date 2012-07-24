@@ -14,7 +14,7 @@ session_start();
     <div id="topContainer">
         <div class="topWrapper">
             <div style="float: left;&gt;">
-                <h1>Raspcontrol</h1>
+                <h1>Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
             </div>
@@ -24,11 +24,9 @@ session_start();
 					
 				}else{ ?>
 					
-					<div style="text-align: right; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
-		                Hostname: <strong><?php echo gethostname(); ?></strong> &middot; Internal IP: <strong><?php echo $_SERVER['SERVER_ADDR']; ?></strong><br>
-		                Accessed From: <strong><?php echo $_SERVER['SERVER_NAME']; ?></strong> &middot; Port <strong><?php echo $_SERVER['SERVER_PORT']; ?></strong> &middot; System: <strong><?php echo $_SERVER['SERVER_SOFTWARE']; ?></strong><br/>
-                        
-		               
+					<div style="text-align: right; padding-top: 15px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
+		                Hostname: <?php echo gethostname(); ?> &middot; Internal IP: <?php echo $_SERVER['SERVER_ADDR']; ?><br>
+		                Accessed From: <?php echo $_SERVER['SERVER_NAME']; ?> &middot; Port <?php echo $_SERVER['SERVER_PORT']; ?> &middot; System: <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/>
 		            </div>
 					
 				<?php }
@@ -36,3 +34,40 @@ session_start();
             
         </div>
     </div>
+
+	<div class="clear"></div>
+<?php
+	if($_SESSION['username'] == ""){				
+	}else{ ?>
+			
+    <div id="subNavContainer">
+        <div class="subNavWrapper">
+            
+            <a href="" onclick="rebootWarn()"><div class="subNavButton">
+            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/reboot.png"></div> <div style="float: left; padding-top: 8px;">Reboot</div>
+            </div></a>
+            
+            <a href="app/commands/_updatesources.php"><div class="subNavButton">
+            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/sources.png"></div> <div style="float: left; padding-top: 8px;">Update Sources</div>
+            </div></a>
+
+
+				<?php
+                if (file_exists("/usr/bin/rpi-update")) { ?>
+                    <a href="app/commands/_updatefirmware.php"><div class="subNavButton">
+		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Update Firmware</div>
+		    		</div></a>
+               <?php } else { ?>
+		            <a href="app/commands/_installfirmware.php"><div class="subNavButton">
+		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
+		    		</div></a>
+                <? }
+                ?>
+			
+
+        </div>
+    </div>
+
+<?php
+	}
+?>
