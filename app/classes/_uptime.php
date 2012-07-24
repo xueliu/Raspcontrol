@@ -8,7 +8,7 @@
             $hours = floor($init / 3600);
             $minutes = floor(($init / 60) % 60);
             $seconds = $init % 60;
-            $uptime = $hours.":".$minutes.":".$seconds;
+            $uptime = $hours." Hours ".$minutes." Minutes ".$seconds." Seconds";
 
             
 			echo "<img src='app/images/uptime.png' align='middle'>Uptime: <strong>$uptime</strong>";
