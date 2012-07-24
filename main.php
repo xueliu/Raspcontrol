@@ -50,6 +50,8 @@ if($_SESSION['username'] == ""){
                 <?php
                 if (file_exists("/usr/bin/rpi-update")) {
                     echo "<a href=\"app/commands/_updatefirmware.php\"><button class=\"minimal\">Update Firmware</button></a>";
+                } else {
+                    echo "<a href=\"app/commands/_installfirmware.php\"><button class=\"minimal\">Install Firmware Updater</button></a>";
                 }
                 ?>
                 
