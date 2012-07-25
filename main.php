@@ -43,8 +43,8 @@ if($_SESSION['username'] == ""){
         	
         	<br/><br/>        	
             
-            <?php $net = networkUsage(); echo "Received: ".$net['rx']." Megabytes Sent: ".$net['tx']." Megabytes Total: ".($net['rx']+$net['tx'])." Megabytes";?>
-            
+            <?php //$net = networkUsage(); echo "Received: ".$net['rx']." Megabytes Sent: ".$net['tx']." Megabytes Total: ".($net['rx']+$net['tx'])." Megabytes"; ?>
+            <?php $network = new network; $networkUseage = $network->networkUsage(); ?>
             <br/><br/>
        	</div>
        	<br/><br/>
