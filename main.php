@@ -13,6 +13,7 @@ if($_SESSION['username'] == ""){
 	require('app/classes/_cpu.php'); 
 	require('app/classes/_uptime.php'); 
 	require('app/includes/_header.php'); 
+    require('app/classes/_network.php');
 ?>
 
     <div id="firstBlockContainer">
@@ -41,6 +42,10 @@ if($_SESSION['username'] == ""){
         	<div class="clear"></div>
         	
         	<br/><br/>        	
+            
+            <?php $net = networkUsage(); echo "Received: ".$net['rx']." Megabytes Sent: ".$net['tx']." Megabytes Total: ".($net['rx']+$net['tx'])." Megabytes";?>
+            
+            <br/><br/>
        	</div>
        	<br/><br/>
     </div>
