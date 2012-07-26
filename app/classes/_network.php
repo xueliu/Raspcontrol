@@ -19,17 +19,27 @@ function networkUsage() {
 <?php
 class network{
 	function networkUsage() {
-    $string = exec("sudo ifconfig eth0 | grep RX\ bytes", $out);
-    $string = str_ireplace("RX bytes:", "", $string);
-    $string = str_ireplace("TX bytes:", "", $string);
-    $string = trim($string);
-    $string = explode(" ", $string);
-    $rxRaw = $string[0] / 1024 / 1024;
-    $txRaw = $string[4] / 1024 / 1024;
+	
+	$netType = shell_exec("sudo ifconfig");
+	$netTypeRaw = explode(" ", $netType); 
+	$netTypeFormatted = str_replace("encap:", "", $netTypeRaw);
+	
+	
+    $dataThroughput = exec("sudo ifconfig eth0 | grep RX\ bytes", $out);
+    $dataThroughput = str_ireplace("RX bytes:", "", $dataThroughput);
+    $dataThroughput = str_ireplace("TX bytes:", "", $dataThroughput);
+    $dataThroughput = trim($dataThroughput);
+    $dataThroughput = explode(" ", $dataThroughput);
+    
+    
+    
+    $rxRaw = $dataThroughput[0] / 1024 / 1024;
+    $txRaw = $dataThroughput[4] / 1024 / 1024;
 	$rx = round($rxRaw, 2)." ";
 	$tx = round($txRaw, 2);
 	$totalRxTx = $rx + $tx;
 	?>
+
 	
 	
 	<div class="networkIcon">
@@ -41,7 +51,7 @@ class network{
 		  </div>
 		  
 		  <div class="networkText">
-			  Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB</strong>
+			<strong> <?php echo $netTypeFormatted[7]; ?> | </strong> Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB</strong>
 		  </div>
 	
 	
