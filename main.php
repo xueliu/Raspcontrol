@@ -15,10 +15,14 @@ if($_SESSION['username'] == ""){
 	require('app/includes/_header.php'); 
     require('app/classes/_network.php');
 	require('app/classes/_who.php');
+	require('app/classes/_versionCheck.php'); 
+            
 ?>
 
     <div id="firstBlockContainer">
         <div class="firstBlockWrapper">
+        	
+        	<?php $versionCheck = new versionCheck; $checkVersion = $versionCheck->checkVersion(); ?>
 
 			<?php $uptime = new systemUptime; $getSystemUptime = $uptime->getSystemUptime();?>
         	
