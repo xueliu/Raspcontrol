@@ -28,6 +28,10 @@
 	        		?>
 	        		
 	        	</form>
+	        	
+	        	<br/><br/>
+	        	Check out our new website: <a href="http://www.raspcontrol.com" target="_blank">www.raspcontrol.com</a>
+	        	
         	</center>
         	</div>
         	
