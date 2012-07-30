@@ -39,6 +39,18 @@ table {
 	clear:both
 }
 
+a{
+	text-decoration: none;
+}
+
+a :active{
+	text-decoration: none;
+}
+
+a :hover{
+	text-decoration: none;
+}
+
 body {
 }
 
@@ -67,7 +79,7 @@ h2 {
 	background:linear-gradient(to bottom,#464646 0%,#303130 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#464646',endColorstr='#303130',GradientType=0);
 	border-bottom:1px solid #000;
-	height:120px
+	height:140px
 }
 
 .topWrapper {
@@ -244,8 +256,26 @@ h2 {
 	padding-top: 10px;
 }
 
+.userIcon{
+	float: left;
+}
 
+.userTitle{
+	float: left;
+	font-family: Tahoma, Helvetica;
+	font-size: 20px;
+	padding-left: 15px;
+	padding-top: 5px;
+}
 
+.userText{
+	float: left;
+	font-family: Tahoma, Helvetica;
+	font-size: 13px;
+	line-height: 8px;
+	padding-left: 60px;
+	padding-top: 10px;
+}
 
 
 
