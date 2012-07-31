@@ -39,9 +39,22 @@ session_start();
 					
 				}else{ ?>
 					
-					<div style="text-align: right; padding-top: 15px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
-		                Hostname: <?php echo gethostname(); ?> &middot; Internal IP: <?php echo $_SERVER['SERVER_ADDR']; ?><br>
-		                Accessed From: <?php echo $_SERVER['SERVER_NAME']; ?> &middot; Port <?php echo $_SERVER['SERVER_PORT']; ?> &middot; System: <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/>
+					<?php 
+					$distroTypeRaw = exec("sudo cat /etc/*-release | grep PRETTY_NAME=", $out); 
+					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
+					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
+					
+					$kernal = exec("sudo uname -mrs");
+					?>
+					
+					<div style="text-align: right; padding-top: 9px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
+		                <strong>Hostname:</strong> <?php echo gethostname(); ?> &middot; 
+		                <strong>Internal IP:</strong> <?php echo $_SERVER['SERVER_ADDR']; ?><br/>
+		                <strong>Accessed From:</strong> <?php echo $_SERVER['SERVER_NAME']; ?> &middot; 
+		                <strong>Port:</strong> <?php echo $_SERVER['SERVER_PORT']; ?> &middot; 
+		                <strong>HTTP:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/><br/>
+		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
+		                <?php echo "<strong>Kernal:</strong> ".$kernal; ?>
 		            </div>
 					
 				<?php }
