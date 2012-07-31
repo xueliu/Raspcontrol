@@ -16,7 +16,12 @@ class usersLoggedIn{
 		  </div>
 		  
 		  <div class="userText">
-			<strong> <?php echo $whoUsersFormatted; ?>
+		  	<?php if($whoUsersFormatted == ""){
+		  		echo "<strong>No users logged in</strong>";
+		  	}else{
+		  		echo "<strong>$whoUsersFormatted</strong>";
+		  	}
+			?>
 		  </div>
 	
 	

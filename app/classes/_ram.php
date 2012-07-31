@@ -34,7 +34,7 @@
 					
 					<br/>
 					
-					Free: <strong><?php echo ($free + $buffers + $cached); ?> MB</strong> Used: <strong><?php echo ($used - $buffers - $cached); ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong><br/></div>
+					Free: <strong><?php echo ($free); ?> MB</strong> Used: <strong><?php echo ($used); ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong><br/></div>
 				
 				
 				<div class="clear"></div>
@@ -76,7 +76,7 @@
 					
 					<br/>
 					
-					Free: <strong><?php echo ($free + $buffers + $cached); ?> MB</strong> Used: <strong><?php echo ($used - $buffers - $cached); ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong>
+					Free: <strong><?php echo ($free); ?> MB</strong> Used: <strong><?php echo ($used); ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong>
 					
 				</div>
 				
