@@ -8,10 +8,10 @@
 			$percentage = round(($used) / $total * 100);
 			
 			if($percentage > '80'){
-			    $warning = "<font color=\"red\"> (Warning)</font>";
+			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
-	            $warning = "<font color=\"green\"> (OK)</font>";
+	            $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
 	            $bar = "barGreen";
 	          } 
 	          ?>
@@ -50,10 +50,10 @@
 		    $percentage = round($used / $total * 100);
 
 			if($percentage > '80'){
-			    $warning = "<font color=\"red\"> (Warning)</font>";
+			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
-	            $warning = "<font color=\"green\"> (OK)</font>";
+	            $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
 	            $bar = "barGreen";
 	          } 
 	          ?>

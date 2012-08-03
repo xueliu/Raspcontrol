@@ -8,9 +8,9 @@
 		  $cpuSpeed = str_replace("BogoMIPS	: ", "", "$rawCPUSpeed");
 		  
           if ($getLoad[0] > 1) {
-              $warning = "<font color=\"red\"> (Warning)</font>";
+              $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
           } else {
-              $warning = "<font color=\"green\"> (OK)</font>";
+              $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
           } 
           ?>
 		  
