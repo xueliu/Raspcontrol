@@ -48,7 +48,7 @@ session_start();
                     $firmware = exec("sudo uname -v");
 					?>
 					
-					<div style="text-align: right; padding-top: 9px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
+					<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
 		                <strong>Hostname:</strong> <?php echo gethostname(); ?> &middot; 
 		                <strong>Internal IP:</strong> <?php echo $_SERVER['SERVER_ADDR']; ?><br/>
 		                <strong>Accessed From:</strong> <?php echo $_SERVER['SERVER_NAME']; ?> &middot; 

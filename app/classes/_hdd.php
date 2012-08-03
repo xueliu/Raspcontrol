@@ -35,7 +35,11 @@
 				</div>
 				
 				<div class="sdTitle">
-					SD Card <?php echo $warning ?>
+					SD Card
+				</div>
+				
+				<div class="sdWarning">
+					<?php echo $warning ?>
 				</div>
 				
 				<div class="sdText">

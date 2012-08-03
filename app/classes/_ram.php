@@ -22,7 +22,11 @@
 				</div>
 				
 				<div class="ramTitle">
-					 Memory <?php echo $warning; ?>
+					 Memory 
+				</div>
+				
+				<div class="ramWarning">
+					<?php echo $warning; ?>
 				</div>
 				
 				<div class="ramText">
@@ -64,7 +68,11 @@
 				</div>
 				
 				<div class="swapTitle">
-					 Swap <?php echo $warning; ?>
+					 Swap
+				</div>
+				
+				<div class="swapWarning">
+					<?php echo $warning; ?>
 				</div>
 				
 				<div class="swapText">

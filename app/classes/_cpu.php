@@ -19,7 +19,11 @@
 		  </div> 
 		  
 		  <div class="cpuTitle">
-		  	CPU <?php echo $warning ?>
+		  	CPU 
+		  </div>
+		  
+		  <div class="cpuWarning">
+		  	<?php echo $warning ?>
 		  </div>
 		  
 		  <div class="cpuText">
