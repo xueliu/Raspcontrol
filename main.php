@@ -74,5 +74,10 @@ if($_SESSION['username'] == ""){
 			alert("Reboot Aborted")
 		}
 	}
+    
+	function firmwareMsg() {
+		alert("Firmware updating")
+		window.location = "app/commands/_updatefirmware.php";
+	}
 	//-->
 	</script>
