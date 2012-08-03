@@ -11,7 +11,7 @@
             }
             ?>
             <br/><br/>
-            The Raspberry Logo is a trademark of <a href="https://http://www.raspberrypi.org" target="_blank">The Raspberry Pi Foundation</a>
+            The Raspberry Logo is a trademark of <a href="http://www.raspberrypi.org" onclick="window.open(this.href);return false;">The Raspberry Pi Foundation</a>
         </div>
     </div>
 </body>
