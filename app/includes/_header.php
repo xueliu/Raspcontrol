@@ -45,6 +45,7 @@ session_start();
 					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
 					
 					$kernel = exec("sudo uname -mrs");
+                    $firmware = exec("sudo uname -v");
 					?>
 					
 					<div style="text-align: right; padding-top: 9px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
@@ -54,7 +55,8 @@ session_start();
 		                <strong>Port:</strong> <?php echo $_SERVER['SERVER_PORT']; ?> &middot; 
 		                <strong>HTTP:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/><br/>
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
-		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?>
+		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?><br/>
+                        <?php echo "<strong>Firmware:</strong> ".$firmware; ?>
 		            </div>
 					
 				<?php }
