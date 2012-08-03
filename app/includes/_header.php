@@ -44,7 +44,7 @@ session_start();
 					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
 					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
 					
-					$kernal = exec("sudo uname -mrs");
+					$kernel = exec("sudo uname -mrs");
 					?>
 					
 					<div style="text-align: right; padding-top: 9px; color: #FFFFFF; font-family: Arial; font-size: 14px; float: right; width:500px;">
@@ -54,7 +54,7 @@ session_start();
 		                <strong>Port:</strong> <?php echo $_SERVER['SERVER_PORT']; ?> &middot; 
 		                <strong>HTTP:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/><br/>
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
-		                <?php echo "<strong>Kernal:</strong> ".$kernal; ?>
+		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?>
 		            </div>
 					
 				<?php }
