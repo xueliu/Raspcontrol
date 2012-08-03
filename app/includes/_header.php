@@ -82,7 +82,7 @@ session_start();
 
 				<?php
                 if (file_exists("/usr/bin/rpi-update")) { ?>
-                    <a href="app/commands/_updatefirmware.php"><div class="subNavButton">
+                    <a href="" onclick="firmwareMsg()"><div class="subNavButton">
 		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Update Firmware</div>
 		    		</div></a>
                <?php } else { ?>
