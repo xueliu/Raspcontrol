@@ -5,7 +5,7 @@
 		    preg_match_all('/\s+([0-9]+)/', $out[1], $matches);
 		    list($total, $used, $free, $shared, $buffers, $cached) = $matches[1];
 
-			$percentage = round(($used) / $total * 100);
+			$percentage = round(($used - $buffers - $cached) / $total * 100);
 			
 			if($percentage > '80'){
 			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
@@ -34,7 +34,7 @@
 					
 					<br/>
 					
-					Free: <strong><?php echo ($free); ?> MB</strong> Used: <strong><?php echo ($used); ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong><br/></div>
+					Free: <strong><?php echo $free + $buffers + $cached; ?> MB</strong> Used: <strong><?php echo $used - $buffers - $cached; ?> MB</strong> &middot Total: <strong><?php echo $total; ?> MB</strong><br/></div>
 				
 				
 				<div class="clear"></div>
