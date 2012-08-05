@@ -5,8 +5,20 @@
 		 	$uptime = shell_exec("cat /proc/uptime");
 			$uptime = explode(" ", $uptime);          
 		        $uptime = $this->secondsToReadableTime($uptime[0]);
-            
-			echo "<img src='app/images/uptime.png' align='middle'>Uptime: <strong>$uptime</strong>";
+				?>
+				
+					<div class="uptimeIcon">
+						<img src='app/images/uptime.png' align='middle'>
+					</div> 
+		  
+					<div class="uptimeTitle">
+						Uptime
+					</div>
+		  
+					<div class="uptimeText">
+						<strong><?php echo $uptime?></strong>
+					</div>
+				<?php
 		}
 
 
