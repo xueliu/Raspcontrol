@@ -1,23 +1,19 @@
 <?php
 	class hddPercentage {
 		function freeStorage(){
-				    
-			    $bytes = disk_free_space("."); 
-			    $si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
-			    $base = 1024;
-			    $class = min((int)log($bytes , $base) , count($si_prefix) - 1);
-			    $free =  sprintf('%1.2f' , $bytes / pow($base,$class));
-				
-				
-				
+
+				function decodeSize( $bytes ) {
+					$si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
+					$base = 1024;
+					$class = min((int)log($bytes , $base) , count($si_prefix) - 1);
+					return( sprintf('%1.2f' , $bytes / pow($base,$class)) );
+				}	
+				$bytes = disk_free_space("."); 			    
+			    $free =  decodeSize($bytes);
+	
 			    $bytes = disk_total_space("."); 
-			    $si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
-			    $base = 1024;
-			    $class = min((int)log($bytes , $base) , count($si_prefix) - 1);
-			    $total = sprintf('%1.2f' , $bytes / pow($base,$class));
-		    
-			
-				
+			    $total = decodeSize($bytes);
+
 				$used = $total - $free;
 				$percentage = round($used / $total * 100);
 				
