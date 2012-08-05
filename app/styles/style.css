@@ -120,6 +120,26 @@ h2 {
 	margin-right:10px
 }
 
+.subUpdateButton {
+	color:#000;
+	background-color:#FFF;
+	height:30px;
+	padding-left:20px;
+	padding-right:20px;
+	float:left;
+	margin-right:10px
+}
+
+.subUpdateButton:hover {
+	color:#000;
+	background-color:#d5d4d4;
+	height:30px;
+	padding-left:20px;
+	padding-right:20px;
+	float:left;
+	margin-right:10px
+}
+
 #firstBlockContainer {
 	background:#FFF;
 	font-size:14px;

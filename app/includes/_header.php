@@ -93,11 +93,6 @@ session_start();
 		    		</div></a>
                 <? }
                 ?>
-			
-	<a href="app/commands/_updateraspcontrol.php"><div class="subNavButton">
-		<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updateraspcontrol.png"></div> <div style="float: left; padding-top: 8px;">Update Raspcontrol</div>
-	</div></a>
-
         </div>
     </div>
 

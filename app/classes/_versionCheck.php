@@ -13,9 +13,15 @@
 		    if ($critical) { 
 		        print '<center><font color="red">There is a critical update available (Version: '.$read[0].')!</font><br/>You can get it at <a href="'.$read[3].'">'.$read[3].'</a> (Description: '.$read[1].') <br/><br/></center>';
 		    }else if ($update){
-		        print '<center><font color="green">There is a non critical update available (Version: '.$read[0].')!</font><br/>You can get it at <a href="'.$read[3].'">'.$read[3].'</a> (Description: '.$read[1].') <br/><br/></center>';
+		        print '<center><font color="green">There is a non critical update available (Version: '.$read[0].')!</font><br/>You can get it at <a href="'.$read[3].'">'.$read[3].'</a> (Description: '.$read[1].') <br/></center>';
 		    }
-			
+			?>
+		    
+			<a href="app/commands/_updateraspcontrol.php"><div class="subUpdateButton">
+				<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updateraspcontrol.png"></div> <div style="float: left; padding-top: 8px;">Auto-update Raspcontrol</div>
+				</div></a>
+				<br/><br/><br/><br/>
+		    <?		
 		}
 	}
 ?>
