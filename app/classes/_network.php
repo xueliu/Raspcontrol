@@ -57,7 +57,7 @@ class network{
 		  </div>
 		  
 		  <div class="networkText">
-			<strong> <?php echo $netTypeFormatted[7]; ?> | </strong> Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB</strong> <br /> Network Connections: <strong><?php echo $iTotalConnections; ?></strong>
+			<strong> <?php echo $netTypeFormatted[7]; ?> | </strong> Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB</strong> <br /> Active Network Connections: <strong><?php echo $iTotalConnections; ?></strong>
 		  </div>
 	
 	
