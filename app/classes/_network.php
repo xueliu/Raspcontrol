@@ -40,6 +40,12 @@ class network{
 	$totalRxTx = $rx + $tx;
 	?>
 
+	<?
+		$iTotalConnections = shell_exec("netstat -nta --inet | wc -l");
+		$iTotalConnections--;
+		
+	?>
+
 	
 	
 	<div class="networkIcon">
@@ -51,7 +57,7 @@ class network{
 		  </div>
 		  
 		  <div class="networkText">
-			<strong> <?php echo $netTypeFormatted[7]; ?> | </strong> Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB</strong>
+			<strong> <?php echo $netTypeFormatted[7]; ?> | </strong> Received: <strong><?php echo $rx; ?> MB</strong> &middot Sent: <strong><?php echo $tx; ?> MB</strong> &middot Total: <strong><?php echo $totalRxTx; ?> MB <br /> Network Connections: <strong><?php echo $iTotalConnections; ?></strong>
 		  </div>
 	
 	
