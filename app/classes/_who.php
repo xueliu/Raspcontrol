@@ -1,7 +1,8 @@
 <?php
 class usersLoggedIn{
 	function getusersLoggedIn() {
-	$whoUsersType = shell_exec("sudo users");	
+
+	$whoUsersType = shell_exec("w | grep -E \"`users | sed 's/ /\|/g'`\"");	
 	$whoUsersFormatted = str_replace(" ", " &middot ", $whoUsersType);
 	?>
 
@@ -19,7 +20,30 @@ class usersLoggedIn{
 		  	<?php if($whoUsersFormatted == ""){
 		  		echo "<strong>No users logged in</strong>";
 		  	}else{
-		  		echo "<strong>$whoUsersFormatted</strong>";
+		  		$s = "";
+				
+				//Split lines into individual array elements
+				$lines = explode ("\n", $whoUsersType);
+				foreach ($lines as $line)
+				{
+					//Replace multiple spaces with single space
+					$line = preg_replace("/ +/", " ", $line);
+
+					if (strlen($line)>0)
+					{
+
+						//Now split fields into multiple values
+						$fields = explode(" ", $line);
+					
+						$s .= "<strong>User:</strong> " . $fields[0] . "<br />";
+						$s .= "<strong>TTY:</strong> " . $fields[1] . "<br />";
+						$s .= "<strong>From:</strong> " . $fields[2] . "<br />";
+						$s .= "<strong>Login @:</strong> " . $fields[3] . "<br />";
+
+						$s .= "<br /><br />";
+					}
+				}
+				echo $s;
 		  	}
 			?>
 		  </div>
