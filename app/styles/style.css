@@ -357,7 +357,7 @@ h2 {
 	float: left;
 	font-family: Tahoma, Helvetica;
 	font-size: 13px;
-	line-height: 8px;
+	line-height: 14px;
 	padding-left: 28px;
 	padding-top: 10px;
 }
@@ -368,6 +368,8 @@ h2 {
 
 
 #footerContainer {
+	margin:auto;
+	position:relative;
 	height:50px;
 	font-size:12px;
 	font-family:Arial
