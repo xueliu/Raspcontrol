@@ -1,27 +1,211 @@
-<h1>How to setup Raspcontrol</h1>
-<h2>Typical Installation Requirements:</h2>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    margin: 10px 13px 10px 13px;
+}
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin:10px auto;
+    }
+}
+</style>
+<title>Raspcontrol</title>
+</head>
+<body>
+<h1>Raspcontrol</h1>
 
-<p>
-	<ul>
-		<li>OS: Raspbian/Debian Wheezy</li>
-		<li>HTTP: Apache 2 (sudo apt-get install apache2)</li>
-		<li>Language: PHP-5 (sudo apt-get install php5)</li>
-	</ul>
-</p>
+<h3>Getting Started Guide</h3>
 
-<h2>How to setup</h2>
-	<ul>
-		<li>Upload everything within the .ZIP file you have downloaded from GitHub into a folder called raspcontrol within your web accessible directory (Apaches Default is located in <strong>/var/www</strong>).</li><br/>
-		
-		<li>You must add www-data on Apache (or your HTTP user on another HTTP Server) to your sudoers file, which means they can run Superuser Commands, to do this from the shell type 'sudo visudo' scroll to the bottom of the file and on the last line add: 'www-data ALL=(ALL) NOPASSWD: ALL'</li><br/>
-		
-		<li>If you're accessing Apaches web directory on your Raspberry Pi (using startx) you can navigate to http://localhost/raspcontrol, if you're accessing it from another computer on your Network you will need to navigate to http://your.iternal.ip/raspcontrol.</li><br/>
-				
-		<li>Once you can see a login screen you have successfully uploaded Raspcontrol to your Raspberry Pi, now you need to navigate to raspcontrol/setup.php, this will create the initial user to login to the system, the default credentials to login are: <strong>Username:</strong> admin <strong>Password:</strong> admin
-		</li>
-	</ul>
-		
-<h2>Further Information</h2>
-<p>This is an ongoing development, if you wish you can pull the repo from GitHub and contribute to any part of the code, this manual will be improved or you can improve it yoursefl!</p>
-<br/>
-<a href="http://www.fusionstrike.com">Fusion Strike</a> &middot <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol on GitHub</a>
+<h5>Typical Installation Requirements:</h5>
+
+<p><em>OS:</em> Raspbian/Debian Wheezy</p>
+
+<p><em>HTTP:</em> Apache 2 (sudo apt-get install apache2)</p>
+
+<p><em>Language:</em> PHP-5 (sudo apt-get install php5)</p>
+
+<hr />
+
+<h2>How to setup:</h2>
+
+<h3>Getting the source</h3>
+
+<h4>.zip Download</h4>
+
+<p>You can download this as a <em>.zip</em> from the GitHub Repository via the following link:</p>
+
+<pre><code>https://github.com/Bioshox/Raspcontrol/zipball/master
+</code></pre>
+
+<h4>Git Clone</h4>
+
+<p>If you have Git installed you can clone the repo</p>
+
+<pre><code>git clone https://github.com/Bioshox/Raspcontrol.git
+</code></pre>
+
+<h3>Getting it running</h3>
+
+<h4>PHP 5.4</h4>
+
+<p>If you&rsquo;re using PHP 5.4 it is possible to deploy a development server right from within PHP, to do this simple navigate to the location you downloaded Raspcontrol too and then run the command</p>
+
+<pre><code>sudo php -S ip-to-bind-to:80
+</code></pre>
+
+<p>This will start a temporary web server from PHP without the need for Apache or any other HTTP server. You can now access Raspcontrol from <em>localhost</em> or the Internal IP from a different computer on your LAN and externally if you&rsquo;re using Port Forwarding.</p>
+
+<p><strong>This will work with PHP 5.4 ONLY</strong> you can check your PHP version by running the command</p>
+
+<pre><code>php -v
+</code></pre>
+
+<h4>Apache</h4>
+
+<p>Add www-data on Apache to the SUDOERS file</p>
+
+<pre><code>sudo VISUDO
+</code></pre>
+
+<p>On the last line add the following</p>
+
+<pre><code>www-data ALL=(ALL) NOPASSWD: ALL
+</code></pre>
+
+<p><strong>Raspcontrol is not designed for production use, adding www-data to a SUDOERS file is dangerous and is not a permanent solution.</strong></p>
+
+<p>If you&rsquo;re accessing Apaches web directory on your Raspberry Pi (using startx) you can navigate to http://localhost/raspcontrol, if you&rsquo;re accessing it from another computer on your Network you will need to navigate to http://your.internal.ip/raspcontrol.</p>
+
+<h3>Setting up your account</h3>
+
+<p>Once you can see a login screen this is your indication that Raspcontrol is now running at this point you <strong>must</strong> navigate to</p>
+
+<pre><code>raspcontrol/setup.php 
+</code></pre>
+
+<p>this will create the initial user to login to the system, you can then log in with the username &ldquo;admin&rdquo; and the password that you chose during setup.</p>
+
+<p><strong>For security ensure you remove setup.php once complete</strong></p>
+
+<hr />
+
+<h3>Thanks!</h3>
+
+<p>Please feel free to contribute to this development!</p>
+
+<p>Hosting proudly supplied by <a href="http://fusionstrike.com">Fusion Strike</a></p>
+</body>
+</html>
