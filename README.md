@@ -4,9 +4,13 @@
 
 _OS:_ Raspbian/Debian Wheezy
 
-_HTTP:_ Apache 2 (sudo apt-get install apache2)
+_HTTP:_ Apache 2 
 
-_Language:_ PHP-5 (sudo apt-get install php5)
+	sudo apt-get install apache2
+
+_Language:_ PHP-5 
+
+	sudo apt-get install php5
 
 ***
 
@@ -30,7 +34,7 @@ If you have Git installed you can clone the repo
 
 #### PHP 5.4
 
-If you're using PHP 5.4 it is possible to deploy a development server right from within PHP, to do this simple navigate to the location you downloaded Raspcontrol too and then run the command
+If you're using PHP 5.4 it is possible to deploy a development server right from within PHP, to do this simply navigate to the location you downloaded Raspcontrol and then run the command
 	
 	sudo php -S ip-to-bind-to:80
 	
