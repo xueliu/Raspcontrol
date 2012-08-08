@@ -1,4 +1,4 @@
-# Raspcontrol
+# [Raspcontrol](http://raspcontrol.com)
 ### Getting Started Guide
 ##### Typical Requirements:
 
@@ -53,7 +53,7 @@ On the last line add the following
 	
 __Raspcontrol is not designed for production use, adding www-data to a SUDOERS file is dangerous and is not a permanent solution.__
 		
-If you're accessing Apaches web directory on your Raspberry Pi (using startx) you can navigate to http://localhost/raspcontrol, if you're accessing it from another computer on your Network you will need to navigate to http://your.internal.ip/raspcontrol.
+If you're accessing Apaches web avaliable directory on your Raspberry Pi (using startx) you can navigate to localhost/raspcontrol, if you're accessing it from another computer on your Network you will need to navigate to http://your.internal.ip/raspcontrol.
 
 ### Setting up your account
 				
@@ -61,7 +61,7 @@ Once you can see a login screen this is your indication that Raspcontrol is now 
 
 	raspcontrol/setup.php 
 
-this will create the initial user to login to the system, you can then log in with the username "admin" and the password that you chose during setup.
+this will create the initial user to login to the system, you can then log in with the usernamev and password that you chose.
 
 __For security ensure you remove setup.php once complete__
 
