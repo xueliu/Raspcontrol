@@ -1,16 +1,11 @@
 # Raspcontrol
 ### Getting Started Guide
-##### Typical Installation Requirements:
+##### Typical Requirements:
 
-_OS:_ Raspbian/Debian Wheezy
+Raspcontrol can be deployed standalone with only PHP __5.4__ installed which means there is no requirements for a HTTP server such as Apache or NGINX. __PHP 5.4 and above only, no later version__
 
-_HTTP:_ Apache 2 
+If your distribution does not support PHP 5.4 then you will need a HTTP server such as Apache to access Raspcontrol.
 
-	sudo apt-get install apache2
-
-_Language:_ PHP-5 
-
-	sudo apt-get install php5
 
 ***
 
@@ -32,7 +27,9 @@ If you have Git installed you can clone the repo
 
 ### Getting it running
 
-#### PHP 5.4
+There are two typical ways to deploy Raspcontrol, standalone with PHP 5.4 or with a HTTP server such as Apache.
+
+#### Standalone with PHP 5.4
 
 If you're using PHP 5.4 it is possible to deploy a development server right from within PHP, to do this simply navigate to the location you downloaded Raspcontrol and then run the command
 	
@@ -44,7 +41,7 @@ __This will work with PHP 5.4 ONLY__ you can check your PHP version by running t
 	
 	php -v
 	
-#### Apache
+#### With Apache
 
 Add www-data on Apache to the SUDOERS file
 
