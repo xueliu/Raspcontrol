@@ -71,4 +71,6 @@ __For security ensure you remove setup.php once complete__
 
 Please feel free to contribute to this development!
 
+[raspcontrol.com](http://raspcontrol.com)
+
 Hosting proudly supplied by [Fusion Strike](http://fusionstrike.com)
