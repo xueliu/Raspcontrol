@@ -1,5 +1,5 @@
+<?php session_start();
 
-<?php
 if ($_POST['setup']) {
     $output = shell_exec('sudo mkdir /etc/raspcontrol');
     

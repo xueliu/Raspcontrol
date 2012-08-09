@@ -280,6 +280,16 @@ h2 {
 	width: 80px;
 }
 
+.sdName{
+	float: left;
+	font-family: Tahoma, Helvetica;
+	font-size: 13px;
+	padding-left: 18px;
+	padding-top: 13px;
+	margin-top: 10px;
+	width: 130px;
+}
+
 .sdText{
 	float: left;
 	font-family: Tahoma, Helvetica;

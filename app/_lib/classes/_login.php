@@ -1,13 +1,11 @@
-<?php session_start();
-
+<?php 
 if(isset($_POST['login'])){
-
 	$handle = file_get_contents("/etc/raspcontrol/database.aptmnt");
 	$db = json_decode($handle);
 	$username = $db->{'user'};
 	$password = $db->{'password'};
 	$_POST['homepath'] = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME']) - strlen(strrchr($_SERVER['SCRIPT_FILENAME'], "/"))); 
-	
+
 	if($_POST['username'] == $username && $_POST['password'] == $password){
 		
 		$_SESSION['username'] = $username; ?>

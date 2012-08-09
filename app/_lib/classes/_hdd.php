@@ -1,23 +1,26 @@
 <?php
 	class hddPercentage {
 		function freeStorage(){
-
-				function decodeSize( $bytes ) {
-					$si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
-					$base = 1024;
-					$class = min((int)log($bytes , $base) , count($si_prefix) - 1);
-					return( sprintf('%1.2f' , $bytes / pow($base,$class)) );
-				}	
-				$bytes = disk_free_space("."); 			    
-			    $free =  decodeSize($bytes);
-	
-			    $bytes = disk_total_space("."); 
-			    $total = decodeSize($bytes);
-
-				$used = $total - $free;
-				$percentage = round($used / $total * 100);
+			exec('df -hT | grep -vE "tmpfs|rootfs|Filesystem"', $drivesarray);
+			?>
+				<div class="sdIcon">
+					<img src="_lib/images/sd.png" align="middle"> 
+				</div>
 				
-				if($percentage > '80'){
+				<div class="sdTitle">
+					Storage
+				</div>
+				
+				<br/><br/><br/><br/><br/>
+			<?php
+
+			for ($drive=0; $drive<count($drivesarray); $drive++) 
+			{
+				$drivesarray[$drive] = preg_replace('!\s+!', ' ', $drivesarray[$drive]);
+				preg_match_all('/\S+/', $drivesarray[$drive], $drivedetails);
+				list($fs, $type, $size, $used, $available, $percentage, $mounted) = $drivedetails[0];
+
+				if(rtrim($percentage, '%') > '80'){
 			    $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
@@ -26,30 +29,27 @@
 	          } 
 				?>
 			
-				<div class="sdIcon">
-					<img src="_lib/images/sd.png" align="middle"> 
+			
+				<div class="sdName">
+					<?php echo $mounted?>
 				</div>
-				
-				<div class="sdTitle">
-					SD Card
-				</div>
-				
+					
 				<div class="sdWarning">
 					<?php echo $warning ?>
 				</div>
 				
 				<div class="sdText">
 					<div class="graph">
-						<strong class="<?php echo $bar; ?>" style="width:<?php echo $percentage ?>%;"><?php echo $percentage ?>%</strong>
+						<strong class="<?php echo $bar; ?>" style="width:<?php echo $percentage ?>;"><?php echo $percentage ?></strong>
 				</div>
 				
 				<div class="clear"></div>
 				
 				<br/>
 				
-				Total: <strong><?php echo $total ?></strong> GB &middot
-				Free: <strong><?php echo $free ?></strong> GB
-				
+				Total: <strong><?php echo $size ?>B</strong> &middot
+				Free: <strong><?php echo $available ?>B</strong> &middot		
+				Format: <strong><?php echo $type ?>B</strong>
 				</div>
 						
 				<div class="clear"></div>
@@ -59,6 +59,7 @@
 				
 				
 <?php				
+		}
 		}
 		}
 ?>
