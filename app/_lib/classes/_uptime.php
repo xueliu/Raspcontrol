@@ -8,7 +8,7 @@
 				?>
 				
 					<div class="uptimeIcon">
-						<img src='app/images/uptime.png' align='middle'>
+						<img src='_lib/images/uptime.png' align='middle'>
 					</div> 
 		  
 					<div class="uptimeTitle">

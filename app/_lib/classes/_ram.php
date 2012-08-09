@@ -8,17 +8,17 @@
 			$percentage = round(($used - $buffers - $cached) / $total * 100);
 			
 			if($percentage > '80'){
-			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
+			    $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
-	            $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
+	            $warning = "<img src=\"_lib/images/ok.png\" height=\"18\" />";
 	            $bar = "barGreen";
 	          } 
 	          ?>
 		
 		
 				<div class="ramIcon">
-					<img src="app/images/memory.png" align="middle">
+					<img src="_lib/images/memory.png" align="middle">
 				</div>
 				
 				<div class="ramTitle">
@@ -54,17 +54,17 @@
 		    $percentage = round($used / $total * 100);
 
 			if($percentage > '80'){
-			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
+			    $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
-	            $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
+	            $warning = "<img src=\"_lib/images/ok.png\" height=\"18\" />";
 	            $bar = "barGreen";
 	          } 
 	          ?>
 		
 		
 				<div class="swapIcon">
-					<img src="app/images/swap.png" align="middle">
+					<img src="_lib/images/swap.png" align="middle">
 				</div>
 				
 				<div class="swapTitle">

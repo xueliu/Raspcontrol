@@ -7,7 +7,7 @@ session_start();
 <html>
 <head>
     <title>Raspcontrol - The Raspberry Pi Control Centre</title>
-    <link rel="stylesheet" href="app/styles/style.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="_lib/styles/style.css" type="text/css" media="screen" charset="utf-8">
     
     <script type="text/javascript">
 	
@@ -29,7 +29,7 @@ session_start();
     <div id="topContainer">
         <div class="topWrapper">
             <div style="float: left;&gt;">
-               <h1><img src="app/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
+               <h1><img src="_lib/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
             </div>
@@ -74,22 +74,22 @@ session_start();
         <div class="subNavWrapper">
             
             <a href="" onclick="rebootWarn()"><div class="subNavButton">
-            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/reboot.png"></div> <div style="float: left; padding-top: 8px;">Reboot</div>
+            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/reboot.png"></div> <div style="float: left; padding-top: 8px;">Reboot</div>
             </div></a>
             
-            <a href="app/commands/_updatesources.php"><div class="subNavButton">
-            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/sources.png"></div> <div style="float: left; padding-top: 8px;">Update Sources</div>
+            <a href="_lib/commands/_updatesources.php"><div class="subNavButton">
+            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/sources.png"></div> <div style="float: left; padding-top: 8px;">Update Sources</div>
             </div></a>
 
 
 				<?php
                 if (file_exists("/usr/bin/rpi-update")) { ?>
                     <a href="" onclick="firmwareMsg()"><div class="subNavButton">
-		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Update Firmware</div>
+		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Update Firmware</div>
 		    		</div></a>
                <?php } else { ?>
-		            <a href="app/commands/_installfirmware.php"><div class="subNavButton">
-		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="app/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
+		            <a href="_lib/commands/_installfirmware.php"><div class="subNavButton">
+		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
 		    		</div></a>
                 <? }
                 ?>

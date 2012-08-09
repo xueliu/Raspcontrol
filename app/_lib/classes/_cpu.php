@@ -8,14 +8,14 @@
 		  $cpuSpeed = str_replace("BogoMIPS	: ", "", "$rawCPUSpeed");
 		  
           if ($getLoad[0] > 1) {
-              $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
+              $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
           } else {
-              $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
+              $warning = "<img src=\"_lib/images/ok.png\" height=\"18\" />";
           } 
           ?>
 		  
 		  <div class="cpuIcon">
-		  	<img src='app/images/cpu.png' align='middle'>
+		  	<img src='_lib/images/cpu.png' align='middle'>
 		  </div> 
 		  
 		  <div class="cpuTitle">

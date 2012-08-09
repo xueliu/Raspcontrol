@@ -8,14 +8,14 @@ if($_SESSION['username'] == ""){
 ?>
 
 <?php 	
-	require('app/classes/_ram.php'); 
-	require('app/classes/_hdd.php'); 
-	require('app/classes/_cpu.php'); 
-	require('app/classes/_uptime.php'); 
-	require('app/includes/_header.php'); 
-    require('app/classes/_network.php');
-	require('app/classes/_who.php');
-	require('app/classes/_versionCheck.php'); 
+	require('_lib/classes/_ram.php'); 
+	require('_lib/classes/_hdd.php'); 
+	require('_lib/classes/_cpu.php'); 
+	require('_lib/classes/_uptime.php'); 
+	require('_lib/includes/_header.php'); 
+    require('_lib/classes/_network.php');
+	require('_lib/classes/_who.php');
+	require('_lib/classes/_versionCheck.php'); 
             
 ?>
 
@@ -60,7 +60,7 @@ if($_SESSION['username'] == ""){
        	<br/><br/>
     </div>
     
-    <?php require('app/includes/_footer.php'); ?>
+    <?php require('_lib/includes/_footer.php'); ?>
     
    <script type="text/javascript">
 	<!--
@@ -68,7 +68,7 @@ if($_SESSION['username'] == ""){
 		var answer = confirm("WARNING: This will make your Raspberry Pi temporarily unavailable, it may also connect back to the network with a different IP.")
 		if (answer){
 			alert("Rebooting...!")
-			window.location = "app/commands/_reboot.php";
+			window.location = "_lib/commands/_reboot.php";
 		}
 		else{
 			alert("Reboot Aborted")
@@ -77,7 +77,7 @@ if($_SESSION['username'] == ""){
     
 	function firmwareMsg() {
 		alert("Firmware updating")
-		window.location = "app/commands/_updatefirmware.php";
+		window.location = "_lib/commands/_updatefirmware.php";
 	}
 	//-->
 	</script>

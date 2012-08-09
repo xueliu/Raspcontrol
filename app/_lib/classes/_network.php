@@ -49,7 +49,7 @@ class network{
 	
 	
 	<div class="networkIcon">
-		  	<img src='app/images/network.png' align='middle'>
+		  	<img src='_lib/images/network.png' align='middle'>
 		  </div> 
 		  
 		  <div class="networkTitle">

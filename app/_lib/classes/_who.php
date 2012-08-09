@@ -9,7 +9,7 @@ class usersLoggedIn{
 	
 	
 	<div class="userIcon">
-		  	<img src='app/images/user.png' align='middle'>
+		  	<img src='_lib/images/user.png' align='middle'>
 		  </div> 
 		  
 		  <div class="userTitle">

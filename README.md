@@ -1,10 +1,13 @@
 # [Raspcontrol](http://raspcontrol.com)
+
+Raspcontrol has been drastically improved since the inital release, we now have improved security, standalone deployment and many new awesome features!
+
 ### Getting Started Guide
 ##### Typical Requirements:
 
-Raspcontrol can be deployed standalone with only PHP __5.4__ installed which means there is no requirements for a HTTP server such as Apache or NGINX. __PHP 5.4 and above only, no later version__
+Raspcontrol is intended to be used with the PHP 5.4 inbuilt web server.
 
-If your distribution does not support PHP 5.4 then you will need a HTTP server such as Apache to access Raspcontrol.
+If your distribution does not support PHP 5.4 then you will need to build it from source or use a HTTP server such as Apache to access Raspcontrol.
 
 
 ***
@@ -27,21 +30,27 @@ If you have Git installed you can clone the repo
 
 ### Getting it running
 
-There are two typical ways to deploy Raspcontrol, standalone with PHP 5.4 or with a HTTP server such as Apache.
+Raspcontrol is developed to be deployed with PHP 5.4, although it is possible to deploy it with any other HTTP server too.
 
-#### Standalone with PHP 5.4
+#### Deplyoying with PHP 5.4
 
-If you're using PHP 5.4 it is possible to deploy a development server right from within PHP, to do this simply navigate to the location you downloaded Raspcontrol and then run the command
+Navigate to the location you downloaded Raspcontrol to, from that location we need to give ./start.sh Read/Write/Execute Permissions
+
+	sudo chmod 0777 ./start.sh
 	
-	sudo php -S ip-to-bind-to:80
+Now we can deploy the server by running the command from the same location
 	
-This will start a temporary web server from PHP without the need for Apache or any other HTTP server. You can now access Raspcontrol from _localhost_ or the Internal IP from a different computer on your LAN and externally if you're using Port Forwarding.
+	sudo ./start.sh
+	
+You can now access Raspcontrol from _localhost_ directly on your Pi, or the Internal IP from a different computer on your LAN and externally if you're using Port Forwarding. (Raspcontrol binds to the IP 0.0.0.0:80 by default)
 
 __This will work with PHP 5.4 ONLY__ you can check your PHP version by running the command
 	
 	php -v
 	
 #### With Apache
+
+__Running Raspcontrol under Apache is considered insecure and not recomended.__
 
 Add www-data on Apache to the SUDOERS file
 
@@ -60,8 +69,15 @@ If you're accessing Apaches web avaliable directory on your Raspberry Pi (using 
 Once you can see a login screen this is your indication that Raspcontrol is now running at this point you __must__ navigate to 
 
 	raspcontrol/setup.php 
+	
+	OR
+	
+	raspcontrol/app/setup.php (if you're not deploying Raspcontrol standalone)
 
 this will create the initial user to login to the system, you can then log in with the usernamev and password that you chose.
+
+__/app after /raspcontrol is required if you're not deploying with PHP__
+
 
 __For security ensure you remove setup.php once complete__
 

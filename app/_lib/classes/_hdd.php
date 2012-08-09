@@ -18,16 +18,16 @@
 				$percentage = round($used / $total * 100);
 				
 				if($percentage > '80'){
-			    $warning = "<img src=\"app/images/warning.png\" height=\"18\" />";
+			    $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
 			    $bar = "barAmber";
 	          } else {
-	            $warning = "<img src=\"app/images/ok.png\" height=\"18\" />";
+	            $warning = "<img src=\"_lib/images/ok.png\" height=\"18\" />";
 	            $bar = "barGreen";
 	          } 
 				?>
 			
 				<div class="sdIcon">
-					<img src="app/images/sd.png" align="middle"> 
+					<img src="_lib/images/sd.png" align="middle"> 
 				</div>
 				
 				<div class="sdTitle">

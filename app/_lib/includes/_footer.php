@@ -6,7 +6,7 @@
             <?php
             
             if($_SESSION['username'] == ""){}else{
-	            echo '&middot; <a href="app/classes/_logout.php">Logout</a>';
+	            echo '&middot; <a href="_lib/classes/_logout.php">Logout</a>';
 				
             }
             ?>
