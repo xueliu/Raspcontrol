@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); 
 if(isset($_POST['login'])){
 	$handle = file_get_contents("/etc/raspcontrol/database.aptmnt");
 	$db = json_decode($handle);
