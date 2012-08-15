@@ -81,7 +81,7 @@ if ($_POST['setup']) {
 	        	<strong>Raspcontrol Installation</strong>
 			<br/><br/>	
 				<center>Please choose a username and password to login with<br/><br/>
-		        	<form name="setup" method="post" action="<?php echo $PHP_SELF; ?>">
+		        	<form name="setup" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 		        		<input type="text" name="username" class="loginForm" onfocus="if(this.value == 'Username') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Username';}" value="Username">
 		        		<input type="password" name="password" class="loginForm" onfocus="if(this.value == 'Password') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}" value="Password"><br/>
 		        		<input type="submit" value="Create Account" name="setup" class="minimal">
@@ -98,4 +98,3 @@ if ($_POST['setup']) {
 }
 
 require('_lib/includes/_footer.php'); 
-?>

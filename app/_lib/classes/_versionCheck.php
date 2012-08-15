@@ -30,8 +30,8 @@
 				<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updateraspcontrol.png"></div> <div style="float: left; padding-top: 8px;">Auto-update Raspcontrol</div>
 				</div></a> -->
 				<br/><br/>
-		    <?	
+		    <?php	
 		    }	
 		}
 	}
-?>
+

@@ -37,9 +37,7 @@ session_start();
 			<?php
 				if($_SESSION['username'] == ""){
 					
-				}else{ ?>
-					
-					<?php 
+				}else{
 					$distroTypeRaw = exec("sudo cat /etc/*-release | grep PRETTY_NAME=", $out); 
 					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
 					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
@@ -91,11 +89,11 @@ session_start();
 		            <a href="_lib/commands/_installfirmware.php"><div class="subNavButton">
 		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
 		    		</div></a>
-                <? }
+                <?php }
                 ?>
         </div>
     </div>
 
 <?php
 	}
-?>
+

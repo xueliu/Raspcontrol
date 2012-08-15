@@ -4,9 +4,7 @@ if($_SESSION['username'] == ""){
 	die;
 }
 
-?>
 
-<?php 	
 	require('_lib/classes/_ram.php'); 
 	require('_lib/classes/_hdd.php'); 
 	require('_lib/classes/_cpu.php'); 
