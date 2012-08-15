@@ -91,7 +91,7 @@ session_start();
 		            <a href="_lib/commands/_installfirmware.php"><div class="subNavButton">
 		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
 		    		</div></a>
-                <? }
+                <?php }
                 ?>
         </div>
     </div>
