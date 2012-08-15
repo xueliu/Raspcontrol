@@ -37,9 +37,7 @@ session_start();
 			<?php
 				if($_SESSION['username'] == ""){
 					
-				}else{ ?>
-					
-					<?php 
+				}else{
 					$distroTypeRaw = exec("sudo cat /etc/*-release | grep PRETTY_NAME=", $out); 
 					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
 					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
@@ -98,4 +96,4 @@ session_start();
 
 <?php
 	}
-?>
+

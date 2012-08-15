@@ -98,4 +98,3 @@ if ($_POST['setup']) {
 }
 
 require('_lib/includes/_footer.php'); 
-?>

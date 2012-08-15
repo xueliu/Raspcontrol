@@ -13,10 +13,7 @@ function networkUsage() {
     return $out;
 }
  * */
- 
-?>
 
-<?php
 class network{
 	function networkUsage() {
 	
@@ -38,9 +35,7 @@ class network{
 	$rx = round($rxRaw, 2)." ";
 	$tx = round($txRaw, 2);
 	$totalRxTx = $rx + $tx;
-	?>
 
-	<?
 		$iTotalConnections = shell_exec("netstat -nta --inet | wc -l");
 		$iTotalConnections--;
 		
@@ -66,4 +61,3 @@ class network{
 }
 }
 
-?>

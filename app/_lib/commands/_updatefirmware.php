@@ -9,6 +9,3 @@ $last_line = system('sudo rpi-update > /dev/null &');
 $last_line = system('sudo ldconfig');
 
 header("location: ".$_SERVER['HTTP_REFERER']);
-
- ?>
- 
