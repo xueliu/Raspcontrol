@@ -32,7 +32,7 @@ If you have Git installed you can clone the repo
 
 Raspcontrol is developed to be deployed with PHP 5.4, although it is possible to deploy it with any other HTTP server too.
 
-#### Deplyoying with PHP 5.4
+#### Deploying with PHP 5.4
 
 Navigate to the location you downloaded Raspcontrol to, from that location we need to give ./start.sh Read/Write/Execute Permissions
 
