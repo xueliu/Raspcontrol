@@ -66,20 +66,7 @@ If you're accessing Apaches web avaliable directory on your Raspberry Pi (using 
 
 ### Setting up your account
 				
-Once you can see a login screen this is your indication that Raspcontrol is now running at this point you __must__ navigate to 
-
-	raspcontrol/setup.php 
-	
-	OR
-	
-	raspcontrol/app/setup.php (if you're not deploying Raspcontrol standalone)
-
-this will create the initial user to login to the system, you can then log in with the usernamev and password that you chose.
-
-__/app after /raspcontrol is required if you're not deploying with PHP__
-
-
-__For security ensure you remove setup.php once complete__
+Now you will be promted to setup a new account, this will create the initial user to login to the system.
 
 ***	
 		
