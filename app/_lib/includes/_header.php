@@ -32,6 +32,9 @@ session_start();
                <h1><img src="_lib/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
+                <br/>
+                <a href="https://twitter.com/Raspcontrol" class="twitter-follow-button" data-show-count="false">Follow @Raspcontrol</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>	
             </div>
 
 			<?php

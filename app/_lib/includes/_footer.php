@@ -1,7 +1,7 @@
 <div id="footerContainer">
         <div class="footerWrapper">
         	<br/><br/><br/>
-            Powered by <a href="http://raspcontrol.com" target="_blank">Raspcontrol</a>
+            Powered by <a href="http://raspcontrol.com" target="_blank">Raspcontrol</a>, <a href="http://www.fusionstrike.com">Fusion Strike</a> 
             
             <?php
             

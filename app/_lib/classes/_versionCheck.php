@@ -1,11 +1,11 @@
 <?php
 	class versionCheck {
 		function checkVersion(){
-		    $version = "0.6"; //Version of the script, to check against CSV
+		    $version = "0.6.1"; //Version of the script, to check against CSV
 		    $critical = FALSE; //Set Critical Variable to False 
 		    $update = FALSE; //Set None Critical to Fasle too
 		    $url = "http://fusionstrike.com/raspcontrol/version.csv"; //Link to your external CSV to check against
-		    $fp = @fopen ($url, 'r') or print ('Failed to check for the latest version.'); //If the server is unreachable
+		    $fp = @fopen ($url, 'r') or print ('<center>Failed to check for the latest version.</center><br/><br/>'); //If the server is unreachable
 		    $read = fgetcsv ($fp); //PHP fgetcsv
 		    fclose ($fp); // Closes the connection
 		    if ($read[0] > $version && $read[2] == "1") { $critical = TRUE; } // If its 1, set ciritcal to true
