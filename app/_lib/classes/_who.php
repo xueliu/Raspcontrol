@@ -2,9 +2,8 @@
 class usersLoggedIn{
 	function getusersLoggedIn() {
 
-	$whoUsersType = shell_exec("w | grep -E \"`users | sed 's/ /\|/g'`\"");	
-	$whoUsersFormatted = str_replace(" ", " &middot ", $whoUsersType);
-	?>
+	$whoUsersType = shell_exec("who");	
+	$whoUsersFormatted = str_replace(" ", " &middot ", $whoUsersType);	?>
 
 	
 	
@@ -37,9 +36,8 @@ class usersLoggedIn{
 						$fields = explode(" ", $line);
 					
 						$s .= "<div style='float: left; padding-bottom: 30px; padding-right: 20px;'><strong>User:</strong> " . $fields[0] . "<br />";
-						$s .= "<strong>TTY:</strong> " . $fields[1] . "<br />";
-						$s .= "<strong>From:</strong> " . $fields[2] . "<br />";
-						$s .= "<strong>Login @:</strong> " . $fields[3] . "</div>";
+						$s .= "<strong>IP From:</strong> " . $fields[5] . "<br />";
+						$s .= "<strong>Since:</strong> " . $fields[4] . "</div>";
 
 						$s .= "";
 					}

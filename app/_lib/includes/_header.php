@@ -58,6 +58,7 @@ session_start();
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
 		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?><br/>
                         <?php echo "<strong>Firmware:</strong> ".$firmware; ?>
+                        
 		            </div>
 					
 				<?php }
