@@ -28,7 +28,7 @@ session_start();
 <body>
     <div id="topContainer">
         <div class="topWrapper">
-            <div style="float: left;&gt;">
+            <div style="float: left;">
                <h1><img src="_lib/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
