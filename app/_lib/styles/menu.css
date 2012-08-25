@@ -16,18 +16,9 @@
 #menu{
 	width: 100%;
 	margin: 0;
-	padding: 10px 0 0 0;
+	padding: 13px 0 0 0;
 	list-style: none;  
-	background: #111;
-	background: -moz-linear-gradient(#444, #111); 
-    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));	
-	background: -webkit-linear-gradient(#444, #111);	
-	background: -o-linear-gradient(#444, #111);
-	background: -ms-linear-gradient(#444, #111);
-	background: linear-gradient(#444, #111);
-	-moz-box-shadow: 0 2px 1px #9c9c9c;
-	-webkit-box-shadow: 0 2px 1px #9c9c9c;
-	box-shadow: 0 2px 1px #9c9c9c;
+	font-size: 14px;
 }
 
 #menu li{
@@ -39,7 +30,7 @@
 #menu a{
 	float: left;
 	height: 25px;
-	padding: 0 25px;
+	padding: 0 23px;
 	color: #999;
 	text-decoration: none;
 	text-shadow: 0 1px 0 #000;
@@ -65,7 +56,7 @@
     padding: 0;    
     display: none;
     position: absolute;
-    top: 31px;
+    top: 28px;
     left: 0;
     z-index: 99999;    
     background: #444;
