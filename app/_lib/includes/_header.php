@@ -8,6 +8,7 @@ session_start();
 <head>
     <title>Raspcontrol - The Raspberry Pi Control Centre</title>
     <link rel="stylesheet" href="_lib/styles/style.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="_lib/styles/menu.css" type="text/css" media="screen" charset="utf-8">
     
     <script type="text/javascript">
 	
@@ -28,7 +29,7 @@ session_start();
 <body>
     <div id="topContainer">
         <div class="topWrapper">
-            <div style="float: left;&gt;">
+            <div style="float: left;">
                <h1><img src="_lib/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
@@ -75,26 +76,42 @@ session_start();
     <div id="subNavContainer">
         <div class="subNavWrapper">
             
-            <a href="" onclick="rebootWarn()"><div class="subNavButton">
-            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/reboot.png"></div> <div style="float: left; padding-top: 8px;">Reboot</div>
-            </div></a>
-            
-            <a href="_lib/commands/_updatesources.php"><div class="subNavButton">
-            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/sources.png"></div> <div style="float: left; padding-top: 8px;">Update Sources</div>
-            </div></a>
+			<ul id="menu">
+				<li>
+					<a href="#">Home</a>
+					<ul>
+						<li><a href="index.php">Reload page</a></li>
+						<li><a href="" onclick="rebootWarn()">Reboot Raspberry Pi</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">System</a>
+					<ul>
+						<li><a href="_lib/commands/_updatesources.php">Update Sources</a></li>
+						<li><?php if (file_exists("/usr/bin/rpi-update")) { ?>
+                    		<a href="" onclick="firmwareMsg()">Update Firmware</a>
+							<?php } else { ?>
+		            		<a href="_lib/commands/_installfirmware.php">Install Firmware Updater</a>
+		            		<?php } ?>
+		            	</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">Services</a>
+					<ul>
+						<?php
+							$json = file_get_contents(dirname(__FILE__)."/services.json");
+							$services = json_decode($json);
+							foreach ($services as $key => $value) {
+								echo '<li><a href="_lib/includes/services.php?cmd='.$key.'">'.$key.'</a></li>';
+								}
+						?>
+					</ul>
+				</li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>           
 
-
-				<?php
-                if (file_exists("/usr/bin/rpi-update")) { ?>
-                    <a href="" onclick="firmwareMsg()"><div class="subNavButton">
-		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Update Firmware</div>
-		    		</div></a>
-               <?php } else { ?>
-		            <a href="_lib/commands/_installfirmware.php"><div class="subNavButton">
-		            	<div style="float: left; padding-top: 8px; padding-right: 10px;"><img src="_lib/images/updatesources.png"></div> <div style="float: left; padding-top: 8px;">Install Firmware Updater</div>
-		    		</div></a>
-                <?php }
-                ?>
         </div>
     </div>
 
