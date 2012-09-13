@@ -27,7 +27,7 @@ function login($username, $password) {
 	$handle = file_get_contents("/etc/raspcontrol/settings.json");
   $db = json_decode($handle);
 
-  if ($username == $db->{'pi'} && password_verify($password, $db->{'password'})) {
+  if ($username == $db->{'user'} && password_verify($password, $db->{'password'})) {
     $_SESSION["isLoggedIn"] = true;
     return true;
   }
