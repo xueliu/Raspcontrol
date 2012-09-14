@@ -1,100 +1,137 @@
-<?php session_start();
-
-if ($_POST['setup']) {
-    $output = shell_exec('sudo mkdir /etc/raspcontrol');
-    
-    // Prepare the oven
-    shell_exec('sudo chown root:root /etc/raspcontrol');
-    shell_exec('sudo chmod 0777 /etc/raspcontrol');
-    shell_exec('sudo touch /etc/raspcontrol/database.aptmnt');
-    shell_exec('sudo chown root:root /etc/raspcontrol/database.aptmnt');
-    shell_exec('sudo chmod 0777 /etc/raspcontrol/database.aptmnt');
-    
-    // Open the door
-    $myFile = "/etc/raspcontrol/database.aptmnt";
-    $fh = fopen($myFile, 'w') or die("can't open file");
-    
-    // Bake that Pi
-    $stringData = '{
-        "user":		"' . $_POST['username'] .'", 
-        "password":	"' . $_POST['password'] .'"
-    }';
-    fwrite($fh, $stringData); 
-    
-    // Eat it
-    header('location: index.php');
-    
-    } else {
-
-
-	$filename = '/etc/raspcontrol/database.aptmnt';
-
-	if (file_exists($filename)) {
-		session_start();
-		
-		if($_SESSION['username'] != ""){
-			require('main.php'); 
-			die;
-		}
-		
-		require('_lib/includes/_header.php');
-		require('_lib/classes/_login.php'); 
-?>
-
-	    <div id="firstBlockContainer">
-	        <div class="firstBlockWrapper">
-	        	
-	        	<div style="padding-top: 20px;">
-	        	<center>
-	        		Please login to Raspcontrol!<br/><br/>
-		        	<form name="login" method="post" action="index.php">
-		        		<input type="text" name="username" class="loginForm" onfocus="if(this.value == 'Username') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Username';}" value="Username">
-		        		<input type="password" name="password" class="loginForm" onfocus="if(this.value == 'Password') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}" value="Password"><br/>
-		        		<input type="submit" value="Login" name="login" class="minimal">
-		        		
-		        		<br/><br/>
-		        		
-		        		<?php if($wrong == 1){
-			        		echo "<font color='red'>Incorrect Username/Password</font>";
-		        		}
-		        		?>
-		        		
-		        	</form>
-		        	
-		        	<br/><br/>
-		        	Raspcontrol has been drastically improved! &middot <a href="https://github.com/Bioshox/Raspcontrol/blob/master/README.md" target="_blank">Find out more</a> 
-		        	
-	        	</center>
-	        	</div>
-	        	
-	       	</div>
-	       	<br/><br/><br/>
-	    </div>
-
-<?php    
-	} else {
-	require('_lib/includes/_header.php');
-?>
-
-	<div id="firstBlockContainer">
-	        <div class="firstBlockWrapper">
-	        	<strong>Raspcontrol Installation</strong>
-			<br/><br/>	
-				<center>Please choose a username and password to login with<br/><br/>
-		        	<form name="setup" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-		        		<input type="text" name="username" class="loginForm" onfocus="if(this.value == 'Username') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Username';}" value="Username">
-		        		<input type="password" name="password" class="loginForm" onfocus="if(this.value == 'Password') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}" value="Password"><br/>
-		        		<input type="submit" value="Create Account" name="setup" class="minimal">
-		        		
-		        		
-		        		</center>
-				<br/><br/><br/><br/>
-				</form>
-			</div>
-	</div>
-	
 <?php
-	}
+session_start();
+
+require '../Slim/Slim.php';
+require 'lib/auth.php';
+
+// constants
+define('HOME', dirname(__FILE__));
+
+// init Slim framework
+$app = new Slim();
+$app->config('templates.path', '../app/templates');
+
+// Simple authenication middleware
+$authenticate = function () {
+  if (!isLoggedIn()) {
+    Slim::getInstance()->flash('message', 'Login required!');
+    Slim::getInstance()->redirect('/Raspcontrol/public/login');
+  }
+};
+
+// Load info stubs if necessary
+if(php_uname('s') === 'Linux') {
+  require 'lib/info.php';
+} else {
+  $app->flashNow('message', 'Warning: Using stubs for system information!');
+  require 'lib/info-stub.php';
 }
 
-require('_lib/includes/_footer.php'); 
+// ------------
+// HOME
+// ------------
+$app->get('/', $authenticate, function() use ($app) {
+  require 'lib/util.php';
+  $app->render('index.php');
+});
+
+// ------------
+// LOGIN
+// ------------
+$app->get('/login', function() use ($app) {
+  if (!isAuthSetup()) {
+    $app->redirect('setup');
+  }
+
+  $app->render('login.php');
+});
+
+$app->post('/login', function() use ($app) {
+  $req = $app->request();
+
+  if ($req->post("username") != null && $req->post("password") != null) {
+    if (login($req->post("username"), $req->post("password"))) {
+      $app->flash('message', 'Login succeeded.');
+      $app->redirect('/');
+    } else {
+      $app->flashNow('message', 'Username or password were not correct!');
+      $app->render('login.php');
+    }
+  }
+});
+
+// ------------
+// LOGOUT
+// ------------
+$app->get('/logout', $authenticate, function() use ($app) {
+  logout();
+  $app->flash('message', 'Logged out.');
+  $app->redirect('login');
+});
+
+// ------------
+// SETUP
+// ------------
+$app->get('/setup', function() use ($app) {
+  // if RaspControl is already setup, you need to be logged in
+  // to change your password.
+  if (isAuthSetup()) {
+    $authenticate();
+  }
+
+  $app->render('setup.php');
+});
+
+$app->post('/setup', function() use ($app) {
+  $req = $app->request();
+
+  if (isAuthSetup()) {
+    $authenticate();
+  }
+  
+  if ($req->post("username") != null && $req->post("password") != null) {
+    setup_auth($req->post("username"), $req->post("password"));
+    $app->flash('message', 'Successfully set your new password. Please log in now.');
+    $app->redirect('login');
+  }
+
+  $app->redirect('setup');
+});
+
+// ------------
+// COMMANDS
+// ------------
+$app->get('/reboot', $authenticate, function() use ($app) {
+  require 'lib/commands.php';
+
+  $app->render('command.php', array(
+    'message' => 'Now rebooting!'
+  ));
+
+  reboot();
+});
+
+$app->get('/updatefirmware', $authenticate, function() use ($app) {
+  require 'lib/commands.php';
+
+  $app->render('command.php', array(
+    'message' => 'Updating Firmware!'
+  ));
+
+  updateFirmware();
+});
+
+$app->get('/updateraspcontrol', $authenticate, function() use ($app) {
+  require 'lib/commands.php';
+
+  $app->render('command.php', array(
+    'message' => 'Updating RaspControl!'
+  ));
+
+  updateRaspControl();
+});
+
+
+// now run
+$app->run();
+
