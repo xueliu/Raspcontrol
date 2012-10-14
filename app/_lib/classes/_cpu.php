@@ -4,20 +4,10 @@
 
 		  $getLoad = sys_getloadavg();
 
-		  $rawCPUSpeed = shell_exec('cat /proc/cpuinfo | grep BogoMIPS');
-		  $cpuSpeed = str_replace("BogoMIPS	: ", "", "$rawCPUSpeed");
-
-                  $fh = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq", 'r');
-                  $cpuMinFreq = round(fgets($fh) / 1000) . "MHz";
-                  fclose($fh);
-
-                  $fh = fopen("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", 'r');
-                  $cpuMaxFreq = round(fgets($fh) / 1000) . "MHz";
-                  fclose($fh);
-
-		  $fh = fopen("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", 'r');
-                  $cpuFreqGovernor = fgets($fh);
-                  fclose($fh);
+		  $cpuCurFreq = round(file_get_contents("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq") / 1000) . "MHz";
+                  $cpuMinFreq = round(file_get_contents("/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq") / 1000) . "MHz";
+		  $cpuMaxFreq = round(file_get_contents("/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq") / 1000) . "MHz";
+		  $cpuFreqGovernor = file_get_contents("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor");
 
           if ($getLoad[0] > 1) {
               $warning = "<img src=\"_lib/images/warning.png\" height=\"18\" />";
@@ -41,7 +31,7 @@
 		  <div class="cpuText">
 			  Loads: 1 Min: <strong> <?php echo $getLoad[0]; ?> </strong> &middot
 			  5 Mins: <strong><?php echo $getLoad[1]; ?> </strong> &middot
-			  15 Mins: <strong><?php echo $getLoad[2]; ?> </strong> <br/><br/> CPU booted at <strong><?php echo $cpuSpeed; ?> MHz</strong><br/><br/>
+			  15 Mins: <strong><?php echo $getLoad[2]; ?> </strong> <br/><br/> CPU is running at <strong><?php echo $cpuCurFreq; ?></strong><br/><br/>
 			  Min: <strong><?php echo $cpuMinFreq; ?> </strong> Max: <strong><?php echo $cpuMaxFreq; ?> </strong>  <strong><?php echo $cpuFreqGovernor; ?> </strong> 
 		  </div>
 <?php
