@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['username']))
+{
+  $_Username = "";
+}
+else
+{
+  $_Username = $_SESSION['username'];
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -39,18 +48,19 @@ session_start();
             </div>
 
 			<?php
-				if($_SESSION['username'] == ""){
-					
-				}else{
-					$distroTypeRaw = exec("sudo cat /etc/*-release | grep PRETTY_NAME=", $out); 
-					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
-					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
-					
-					$kernel = exec("sudo uname -mrs");
-                    $firmware = exec("sudo uname -v");
-					?>
-					
-					<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
+			    if( $_Username == "")
+			    {
+			    } else
+			    {
+			      $distroTypeRaw = exec("cat /etc/*-release | grep PRETTY_NAME=", $out);
+			      $distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
+			      $distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);
+
+			      $kernel = exec("uname -mrs");
+                              $firmware = exec("uname -v");
+			?>
+
+				<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
 		                <strong>Hostname:</strong> <?php echo gethostname(); ?> &middot; 
 		                <strong>Internal IP:</strong> <?php echo $_SERVER['SERVER_ADDR']; ?><br/>
 		                <strong>Accessed From:</strong> <?php echo $_SERVER['SERVER_NAME']; ?> &middot; 
@@ -59,9 +69,9 @@ session_start();
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
 		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?><br/>
                         <?php echo "<strong>Firmware:</strong> ".$firmware; ?>
-                        
+
 		            </div>
-					
+
 				<?php }
 			?>
             
@@ -70,7 +80,7 @@ session_start();
 
 	<div class="clear"></div>
 <?php
-	if($_SESSION['username'] == ""){				
+	if($_Username == ""){				
 	}else{ ?>
 			
     <div id="subNavContainer">

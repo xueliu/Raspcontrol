@@ -6,11 +6,12 @@ if($_SESSION['username'] == ""){
 
 
 	require('_lib/classes/_ram.php'); 
+	require('_lib/classes/_pitemp.php'); 
 	require('_lib/classes/_hdd.php'); 
 	require('_lib/classes/_cpu.php'); 
 	require('_lib/classes/_uptime.php'); 
 	require('_lib/includes/_header.php'); 
-    require('_lib/classes/_network.php');
+	require('_lib/classes/_network.php');
 	require('_lib/classes/_who.php');
 	require('_lib/classes/_versionCheck.php'); 
             
@@ -35,6 +36,10 @@ if($_SESSION['username'] == ""){
         	
         	<?php $ram = new ramPercentage; $percentage = $ram->freeMemory(); $percentage = $ram->freeSwap();?>
         	
+        	<div class="clear"></div>
+		<br/>
+		<br/>
+        	<?php $heat = new heatPercentage; $heatpercent = $heat->getCurrentTemp(); ?>
         	<div class="clear"></div>
         	
         	<br/><br/>

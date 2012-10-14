@@ -299,6 +299,35 @@ h2 {
     padding-left: 22px;
 }
 
+.heatIcon {
+    float: left;
+    width: 50px;
+}
+
+.heatWarning {
+    float: left;
+    width: 50px;
+    padding-left: 20px;
+    padding-top: 6px;
+}
+
+.heatTitle {
+    float: left;
+    font-family: Tahoma, Helvetica;
+    font-size: 20px;
+    padding-left: 18px;
+    padding-top: 5px;
+    width: 80px;
+}
+
+.heatText {
+    float: left;
+    font-family: Tahoma, Helvetica;
+    font-size: 13px;
+    line-height: 8px;
+    padding-left: 22px;
+}
+
 .swapIcon {
     float: left;
     margin-top: 30px;
@@ -548,7 +577,7 @@ h2 {
     .graph .barAmber {
         display: block;
         position: relative;
-        border-right: #538e02 1px solid;
+        border-right: #eb8100 1px solid;
         text-align: center;
         color: #fff;
         height: 25px;
@@ -561,6 +590,24 @@ h2 {
         background-image: -webkit-linear-gradient(bottom,#d49f17 8%,#eb8100 69%);
         background-image: -ms-linear-gradient(bottom,#d49f17 8%,#eb8100 69%);
         background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.08,#d49f17),color-stop(0.69,#eb8100));
+    }
+
+    .graph .barRed {
+        display: block;
+        position: relative;
+        border-right: #eb8100 1px solid;
+        text-align: center;
+        color: #fff;
+        height: 25px;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;
+        line-height: 1.9em;
+        background-image: linear-gradient(bottom,#eb8100 8%,#ff0000 69%);
+        background-image: -o-linear-gradient(bottom,#eb8100 8%,#ff0000 69%);
+        background-image: -moz-linear-gradient(bottom,#eb8100 8%,#ff0000 69%);
+        background-image: -webkit-linear-gradient(bottom,#eb8100 8%,#ff0000 69%);
+        background-image: -ms-linear-gradient(bottom,#eb8100 8%,#ff0000 69%);
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.08,#eb8100),color-stop(0.69,#ff0000));
     }
 
     .graph .bar span {

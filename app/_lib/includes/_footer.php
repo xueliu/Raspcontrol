@@ -4,7 +4,7 @@
             
             <?php
             
-            if($_SESSION['username'] == ""){}else{
+            if($_Username == ""){}else{
 	            echo '<br/><br/><a href="_lib/classes/_logout.php">Logout of Raspcontrol</a><br/><br/>';
 				
             }
