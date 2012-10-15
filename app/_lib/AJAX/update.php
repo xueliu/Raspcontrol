@@ -4,13 +4,13 @@ if($_SESSION['username'] == ""){
 	die;
 }
 
-	require('_lib/classes/_ram.php'); 
-	require('_lib/classes/_pitemp.php'); 
-	require('_lib/classes/_hdd.php'); 
-	require('_lib/classes/_cpu.php'); 
-	require('_lib/classes/_uptime.php'); 
-	require('_lib/classes/_network.php');
-	require('_lib/classes/_who.php');
+	require('../classes/_ram.php'); 
+	require('../classes/_pitemp.php'); 
+	require('../classes/_hdd.php'); 
+	require('../classes/_cpu.php'); 
+	require('../classes/_uptime.php'); 
+	require('../classes/_network.php');
+	require('../classes/_who.php');
 ?>
 		<div class="firstBlockWrapper">
 

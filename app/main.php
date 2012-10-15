@@ -92,7 +92,7 @@ if($_SESSION['username'] == ""){
 			xhr.onload = function() {
 				poll.success(xhr.responseText);
 			}
-			xhr.open("get", 'update.php');
+			xhr.open("get", '_lib/AJAX/update.php');
 			xhr.send();
 		},
 		"success" : function (data) {
