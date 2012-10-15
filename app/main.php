@@ -87,17 +87,27 @@ if($_SESSION['username'] == ""){
 		"stop" : function () {	
 			clearInterval(this.timer);
 		},
-		"update" : function () {
+		"update" : function (reset) {
+			if (reset) {
+				this.stop();
+				this.start();
+			}
 			var xhr = new XMLHttpRequest();
-			xhr.onload = function() {
-				poll.success(xhr.responseText);
+			xhr.onreadystatechange=function() {
+				if (xhr.readyState==4 && xhr.status==200) {
+					poll.success(xhr.responseText);
+				}
 			}
 			xhr.open("get", '_lib/AJAX/update.php');
 			xhr.send();
 		},
 		"success" : function (data) {
 			var container = document.getElementById("firstBlockContainer");
+			var updateLog = document.getElementById("lastAJAXUpdate");
+			var d = new Date();
+			var time = d.toLocaleTimeString();
 			container.innerHTML = data;
+			updateLog.innerHTML = time + " (local time)";
 		},
 		"error" : function () {
 			this.stop();
