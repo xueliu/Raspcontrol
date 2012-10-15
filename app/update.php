@@ -4,21 +4,15 @@ if($_SESSION['username'] == ""){
 	die;
 }
 
-
 	require('_lib/classes/_ram.php'); 
 	require('_lib/classes/_pitemp.php'); 
 	require('_lib/classes/_hdd.php'); 
 	require('_lib/classes/_cpu.php'); 
 	require('_lib/classes/_uptime.php'); 
-	require('_lib/includes/_header.php'); 
 	require('_lib/classes/_network.php');
 	require('_lib/classes/_who.php');
-	require('_lib/classes/_versionCheck.php'); 
-            
 ?>
-
-    <div id="firstBlockContainer">
-        <div class="firstBlockWrapper">
+		<div class="firstBlockWrapper">
 
 			<?php $uptime = new systemUptime; $getSystemUptime = $uptime->getSystemUptime();?>
         	
@@ -57,60 +51,4 @@ if($_SESSION['username'] == ""){
 
         	<?php $users = new usersLoggedIn; $getusers = $users->getusersLoggedIn();?>
        	</div>
-       	<br/><br/>
-    </div>
-    
-    <?php require('_lib/includes/_footer.php'); ?>
-    
-   <script type="text/javascript">
-	<!--
-	function rebootWarn() {
-		var answer = confirm("WARNING: This will make your Raspberry Pi temporarily unavailable, it may also connect back to the network with a different IP.")
-		if (answer){
-			alert("Rebooting...!")
-			window.location = "_lib/commands/_reboot.php";
-		}
-		else{
-			alert("Reboot Aborted")
-		}
-	}
-    
-	function firmwareMsg() {
-		alert("Firmware updating")
-		window.location = "_lib/commands/_updatefirmware.php";
-	}
-	
-	var poll = {
-		"start" : function () {
-			this.timer = setInterval("poll.update()", this.delay);
-		},
-		"stop" : function () {	
-			clearInterval(this.timer);
-		},
-		"update" : function () {
-			var xhr = new XMLHttpRequest();
-			xhr.onload = function() {
-				poll.success(xhr.responseText);
-			}
-			xhr.open("get", 'update.php');
-			xhr.send();
-		},
-		"success" : function (data) {
-			var container = document.getElementById("firstBlockContainer");
-			container.innerHTML = data;
-		},
-		"error" : function () {
-			this.stop();
-			alert("Error updating!");
-		},
-		"adjustDelay" : function (delay) {
-			this.stop();
-			this.delay = parseInt(delay);
-			this.start();
-		},
-		"delay" : 60000,
-		"timer" : 0
-	}
-	poll.start();
-	//-->
-	</script>
+		<br/><br/>

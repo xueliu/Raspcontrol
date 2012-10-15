@@ -1,5 +1,11 @@
 <div id="footerContainer">
         <div class="footerWrapper">
+			Poll timer: <select onchange="poll.adjustDelay(this.value);">
+				<option value="30000">30 seconds</option>
+				<option value="60000" selected>1 minute</option>
+				<option value="300000">5 minutes</option>
+				<option value="600000">10 minutes</option>
+			</select><br/><br/>
             Powered by <a href="http://raspcontrol.com" target="_blank">Raspcontrol</a>, Sponsored by <a href="http://www.fusionstrike.com">Fusion Strike</a>.
             
             <?php
