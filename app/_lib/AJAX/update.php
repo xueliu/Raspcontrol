@@ -1,6 +1,6 @@
 <?php session_start();
 if($_SESSION['username'] == ""){
-	require('index.php'); 
+	header('Location: ../../index.php');
 	die;
 }
 
