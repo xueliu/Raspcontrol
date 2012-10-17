@@ -44,7 +44,7 @@ class network{
 			"reveived" : "'.$rx.'MB",
 			"sent" : "'.$tx.'MB",
 			"total" : "'.$totalRxTx.'MB",
-			"active" : "'.$iTotalConnections.'"
+			"active" : "'.substr($iTotalConnections, 0, -1).'"
 		}';
 		return;
 	}

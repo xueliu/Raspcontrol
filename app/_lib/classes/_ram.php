@@ -16,9 +16,9 @@
 	          } 
 			  if ($statsOnly) {
 				echo '"ram" : {
-					"free" : "'.($free + $buffers + $cached).'MB",
-					"used" : "'.($used - $buffers - $cached).'",
-					"total" : "'.$total.'"
+					"free" : '.($free + $buffers + $cached).',
+					"used" : '.($used - $buffers - $cached).',
+					"total" : '.$total.'
 				}';
 				//echo '{"free" : '.($free+$buffers+$cached).'}';
 				return;

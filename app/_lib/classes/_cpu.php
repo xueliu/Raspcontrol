@@ -21,7 +21,7 @@
 				"curFreq" : "'.$cpuCurFreq.'",
 				"minFreq" : "'.$cpuMinFreq.'",
 				"maxFreq" : "'.$cpuMaxFreq.'",
-				"freqGovernor" : "'.$cpuFreqGovernor.'",
+				"freqGovernor" : "'.substr($cpuFreqGovernor, 0, -1).'",
 				"temp" : ';
 				$heatpercent = $heat->getCurrentTemp(true);
 			echo '}';
