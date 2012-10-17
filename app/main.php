@@ -16,10 +16,12 @@ if($_SESSION['username'] == ""){
 	require('_lib/classes/_versionCheck.php'); 
             
 ?>
-
+	<div class="versionCheckContainer">
+		<?php $versionCheck = new versionCheck; $checkVersion = $versionCheck->checkVersion(); ?>
+	</div>
     <div id="firstBlockContainer">
+		
         <div class="firstBlockWrapper">
-
 			<?php $uptime = new systemUptime; $getSystemUptime = $uptime->getSystemUptime();?>
         	
         	<div class="clear"></div>
