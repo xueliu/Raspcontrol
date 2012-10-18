@@ -44,9 +44,22 @@ else
                               $firmware = exec("uname -v");
 
                               $warranty = exec("cat /proc/cpuinfo | grep Revision");
-                              $warranty = str_ireplace('Revision	: ', '', $warranty);
-                              $warranty = ( strlen($warranty)==7 && substr($warranty, 0, 1) == 1 ) ? "void" : "valid" );
-							 
+                              $revision = str_ireplace('Revision	: ', '', $warranty);
+							  $revision = substr($revision, -1);
+							  switch ($revision) {
+								case 2: 
+									$revision = "Model B Revision 1.0";
+									break;
+								case 3:
+									$revision = "Model B Revision 1.0 + ECN0001";
+									break;
+								case 4:
+								case 5:
+								case 6:
+									$revision = "Model B Revision 2.0";
+									break;
+							  }
+                              $warranty = ( strlen($revision)==7 && substr($revision, 0, 1) == 1 ? "<span class='warranty_void'>Void</span>" : "<span class='warranty_valid'>Valid</span>" );
 			?>
 
 				<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
@@ -58,6 +71,7 @@ else
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
 		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?><br/>
                         <?php echo "<strong>Firmware:</strong> ".$firmware; ?><br/>
+						<?php echo "<strong>Revision:</strong> ".$revision; ?></br>
                         <?php echo "<strong>Warranty:</strong> ".$warranty; ?>
 
 		            </div>
