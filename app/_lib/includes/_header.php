@@ -45,7 +45,8 @@ else
 
                               $warranty = exec("cat /proc/cpuinfo | grep Revision");
                               $warranty = str_ireplace('Revision	: ', '', $warranty);
-                              $warranty = ( strlen($warranty)==7 ? "void" : "valid");
+                              $warranty = ( strlen($warranty)==7 && substr($warranty, 0, 1) == 1 ) ? "void" : "valid" );
+							 
 			?>
 
 				<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
