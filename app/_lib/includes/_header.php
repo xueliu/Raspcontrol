@@ -58,6 +58,9 @@ else
 								case 6:
 									$revision = "Model B Revision 2.0";
 									break;
+								default:
+									$revision = "Unknown";
+									break;
 							  }
                               $warranty = ( strlen($revision)==7 && substr($revision, 0, 1) == 1 ? "<span class='warranty_void'>Void</span>" : "<span class='warranty_valid'>Valid</span>" );
 			?>
