@@ -41,12 +41,12 @@ else
 			      $distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);
 
 			      $kernel = exec("uname -mrs");
-                              $firmware = exec("uname -v");
+                            $firmware = exec("uname -v");
 
-                              $warranty = exec("cat /proc/cpuinfo | grep Revision");
-                              $revision = str_ireplace('Revision	: ', '', $warranty);
-							  $revision = substr($revision, -1);
-							  switch ($revision) {
+							$warranty = exec("cat /proc/cpuinfo | grep Revision");
+							$warranty = str_ireplace('Revision	: ', '', $warranty);
+							$revision = substr($warranty, -1);
+							switch ($revision) {
 								case 2: 
 									$revision = "Model B Revision 1.0";
 									break;
@@ -61,8 +61,11 @@ else
 								default:
 									$revision = "Unknown";
 									break;
-							  }
-                              $warranty = ( strlen($revision)==7 && substr($revision, 0, 1) == 1 ? "<span class='warranty_void'>Void</span>" : "<span class='warranty_valid'>Valid</span>" );
+							}
+							if(strlen($warranty) >= 7) /*  there might be more bits after the overvolt */
+								$warranty = (substr($warranty, strlen($warranty)-7, 1) == 0 ? '<span class="warranty_valid">Valid</span>' : '<span class="warranty_void">Void</span>');
+							else
+								$warranty = '<span class="warranty_valid">Valid</span>'; /* we assume that if less than 7 revision bits, the overvolt bit isn't set*/
 			?>
 
 				<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
