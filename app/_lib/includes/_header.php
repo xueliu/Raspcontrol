@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['username']))
+{
+  $_Username = "";
+}
+else
+{
+  $_Username = $_SESSION['username'];
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -7,23 +16,9 @@ session_start();
 <html>
 <head>
     <title>Raspcontrol - The Raspberry Pi Control Centre</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="_lib/styles/style.css" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="_lib/styles/menu.css" type="text/css" media="screen" charset="utf-8">
-    
-    <script type="text/javascript">
-	
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-33662683-1']);
-	  _gaq.push(['_trackPageview']);
-	
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	
-	</script>
-
 </head>
 
 <body>
@@ -33,24 +28,47 @@ session_start();
                <h1><img src="_lib/images/smallLogo.png" style="float: left; margin-top: -15px;"> Raspcontrol.</h1>
 
                 <h2>The Raspberry Pi Control Centre</h2>
-                <br/>
-                <a href="https://twitter.com/Raspcontrol" class="twitter-follow-button" data-show-count="false">Follow @Raspcontrol</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>	
+
             </div>
 
 			<?php
-				if($_SESSION['username'] == ""){
-					
-				}else{
-					$distroTypeRaw = exec("sudo cat /etc/*-release | grep PRETTY_NAME=", $out); 
-					$distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
-					$distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);	
-					
-					$kernel = exec("sudo uname -mrs");
-                    $firmware = exec("sudo uname -v");
-					?>
-					
-					<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
+			    if( $_Username == "")
+			    {
+			    } else
+			    {
+			      $distroTypeRaw = exec("cat /etc/*-release | grep PRETTY_NAME=", $out);
+			      $distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
+			      $distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);
+
+			      $kernel = exec("uname -mrs");
+                            $firmware = exec("uname -v");
+
+							$warranty = exec("cat /proc/cpuinfo | grep Revision");
+							$warranty = str_ireplace('Revision	: ', '', $warranty);
+							$revision = substr($warranty, -1);
+							switch ($revision) {
+								case 2: 
+									$revision = "Model B Revision 1.0";
+									break;
+								case 3:
+									$revision = "Model B Revision 1.0 + ECN0001";
+									break;
+								case 4:
+								case 5:
+								case 6:
+									$revision = "Model B Revision 2.0";
+									break;
+								default:
+									$revision = "Unknown";
+									break;
+							}
+							if(strlen($warranty) >= 7) /*  there might be more bits after the overvolt */
+								$warranty = (substr($warranty, strlen($warranty)-7, 1) == 0 ? '<span class="warranty_valid">Valid</span>' : '<span class="warranty_void">Void</span>');
+							else
+								$warranty = '<span class="warranty_valid">Valid</span>'; /* we assume that if less than 7 revision bits, the overvolt bit isn't set*/
+			?>
+
+				<div style="text-align: right; padding-top: 4px; color: #FFFFFF; font-family: Arial; font-size: 13px; float: right; width:500px;">
 		                <strong>Hostname:</strong> <?php echo gethostname(); ?> &middot; 
 		                <strong>Internal IP:</strong> <?php echo $_SERVER['SERVER_ADDR']; ?><br/>
 		                <strong>Accessed From:</strong> <?php echo $_SERVER['SERVER_NAME']; ?> &middot; 
@@ -58,10 +76,12 @@ session_start();
 		                <strong>HTTP:</strong> <?php echo $_SERVER['SERVER_SOFTWARE']; ?><br/><br/>
 		                <?php echo "<strong>Distribution:</strong> ".$distroTypeRawEnd; ?><br/>
 		                <?php echo "<strong>Kernel:</strong> ".$kernel; ?><br/>
-                        <?php echo "<strong>Firmware:</strong> ".$firmware; ?>
-                        
+                        <?php echo "<strong>Firmware:</strong> ".$firmware; ?><br/>
+						<?php echo "<strong>Revision:</strong> ".$revision; ?></br>
+                        <?php echo "<strong>Warranty:</strong> ".$warranty; ?>
+
 		            </div>
-					
+
 				<?php }
 			?>
             
@@ -70,7 +90,7 @@ session_start();
 
 	<div class="clear"></div>
 <?php
-	if($_SESSION['username'] == ""){				
+	if($_Username == ""){				
 	}else{ ?>
 			
     <div id="subNavContainer">

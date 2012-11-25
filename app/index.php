@@ -1,6 +1,8 @@
-<?php session_start();
+<?php
+//session_start();
 
-if ($_POST['setup']) {
+if(isset($_POST['setup']))
+{
     $output = shell_exec('sudo mkdir /etc/raspcontrol');
     
     // Prepare the oven
@@ -12,18 +14,46 @@ if ($_POST['setup']) {
     
     // Open the door
     $myFile = "/etc/raspcontrol/database.aptmnt";
-    $fh = fopen($myFile, 'w') or die("can't open file");
-    
+    if(!file_exists($myFile))
+    {
+      require('_lib/includes/_header.php');
+      ?>
+        <div id="firstBlockContainer">
+          <div class="firstBlockWrapper">
+            <div style="padding-top: 20px;">
+                The attempt to create the config file failed, so please open a Terminal session and run the commands below:<br/>
+                <br/> 
+                sudo mkdir /etc/raspcontrol<br/>
+                sudo nano /etc/raspcontrol/database.aptmnt<br/>
+                <br/>
+                Once you are in the editor, add the lines below and press the keys "CTRL+X", "Y" and "ENTER"<br/>
+                {<br/>
+                  "user":"guest",<br/>
+                  "password":"guest"<br/>
+                }<br/>
+            </div>
+          </div>
+          <br/><br/><br/>
+        </div>
+      <?php
+      require('_lib/includes/_footer.php'); 
+      die();
+    }
+    else
+    {
+      $fh = fopen($myFile, 'w');
+    }
+
     // Bake that Pi
     $stringData = '{
         "user":		"' . $_POST['username'] .'", 
         "password":	"' . $_POST['password'] .'"
     }';
     fwrite($fh, $stringData); 
-    
+
     // Eat it
     header('location: index.php');
-    
+
     } else {
 
 
@@ -31,12 +61,13 @@ if ($_POST['setup']) {
 
 	if (file_exists($filename)) {
 		session_start();
-		
-		if($_SESSION['username'] != ""){
+
+		if($_SESSION['username'] != "")
+                {
 			require('main.php'); 
 			die;
 		}
-		
+
 		require('_lib/includes/_header.php');
 		require('_lib/classes/_login.php'); 
 ?>
