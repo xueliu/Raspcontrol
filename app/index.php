@@ -1,65 +1,9 @@
 <?php
 //session_start();
 
-if(isset($_POST['setup']))
-{
-    $output = shell_exec('sudo mkdir /etc/raspcontrol');
-    
-    // Prepare the oven
-    shell_exec('sudo chown root:root /etc/raspcontrol');
-    shell_exec('sudo chmod 0777 /etc/raspcontrol');
-    shell_exec('sudo touch /etc/raspcontrol/database.aptmnt');
-    shell_exec('sudo chown root:root /etc/raspcontrol/database.aptmnt');
-    shell_exec('sudo chmod 0777 /etc/raspcontrol/database.aptmnt');
-    
-    // Open the door
-    $myFile = "/etc/raspcontrol/database.aptmnt";
-    if(!file_exists($myFile))
-    {
-      require('_lib/includes/_header.php');
-      ?>
-        <div id="firstBlockContainer">
-          <div class="firstBlockWrapper">
-            <div style="padding-top: 20px;">
-                The attempt to create the config file failed, so please open a Terminal session and run the commands below:<br/>
-                <br/> 
-                sudo mkdir /etc/raspcontrol<br/>
-                sudo nano /etc/raspcontrol/database.aptmnt<br/>
-                <br/>
-                Once you are in the editor, add the lines below and press the keys "CTRL+X", "Y" and "ENTER"<br/>
-                {<br/>
-                  "user":"guest",<br/>
-                  "password":"guest"<br/>
-                }<br/>
-            </div>
-          </div>
-          <br/><br/><br/>
-        </div>
-      <?php
-      require('_lib/includes/_footer.php'); 
-      die();
-    }
-    else
-    {
-      $fh = fopen($myFile, 'w');
-    }
+$filename = '/etc/raspcontrol/database.aptmnt';
 
-    // Bake that Pi
-    $stringData = '{
-        "user":		"' . $_POST['username'] .'", 
-        "password":	"' . $_POST['password'] .'"
-    }';
-    fwrite($fh, $stringData); 
-
-    // Eat it
-    header('location: index.php');
-
-    } else {
-
-
-	$filename = '/etc/raspcontrol/database.aptmnt';
-
-	if (file_exists($filename)) {
+if (file_exists($filename)) {
 		session_start();
 
 		if($_SESSION['username'] != "")
@@ -125,7 +69,6 @@ if(isset($_POST['setup']))
 	</div>
 	
 <?php
-	}
 }
 
 require('_lib/includes/_footer.php'); 
