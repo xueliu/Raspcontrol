@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
 // check identification
 else if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
   try {
-    /*
+    //*
     $db = json_decode(file_get_contents(FILE_PASS));
     $username = $db->{'user'};
     $password = $db->{'password'};
