@@ -27,18 +27,9 @@
       </div>
     </header>
     
-    <div class="container">
-      <div class="row">
-        <div class="span6">
-          <form action="./" method="post">
-          </form>
-        </div>
-
-        <div class="span6 center">
-          <a class="twitter-timeline" href="https://twitter.com/rbpi_bot"  data-widget-id="321548487399444480">@rbpi_bot</a>
-        </div>
-      </div>
-    </div> <!-- container -->
+    <?php
+      include 'pages/home.png';
+    ?>
 
     <footer>
       <div class="container">
@@ -47,7 +38,6 @@
       </div>
     </footer>
 
-    
     <script src="/js/bootstrap.min.js"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </body>
