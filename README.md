@@ -1,6 +1,6 @@
 # Raspcontrol
 
-This a modified version of the excellent [Raspcontrol](/Bioshow/Raspcontrol) from [Bioshox](/Bioshox).
+This a modified version of the excellent [Raspcontrol](//github.com/Bioshow/Raspcontrol) from [Bioshox](//github.com/Bioshox).
 
 ### Requierements
 
@@ -24,4 +24,4 @@ If you have Git installed you can clone the repo
 
 ## Installation
 
-Just put the folder _app_ where you web server folder is installed.
+Just put the folder `app` where you web server folder is installed.
