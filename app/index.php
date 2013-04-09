@@ -23,7 +23,7 @@ if (file_exists($filename)) {
 	        	<center>
 	        		Please login to Raspcontrol!<br/><br/>
 		        	<form name="login" method="post" action="index.php">
-		        		<input type="text" name="username" class="loginForm" placehoder="Username" />
+		        		<input type="text" name="username" class="loginForm" placeholder="Username" />
 		        		<input type="password" name="password" class="loginForm" placeholder="Password" /><br/>
 		        		<input type="submit" value="Login" name="login" class="minimal" />
 		        		
