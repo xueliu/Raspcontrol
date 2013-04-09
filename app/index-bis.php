@@ -28,7 +28,7 @@
     </header>
     
     <?php
-      include 'pages/home.png';
+      include 'pages/home.php';
     ?>
 
     <footer>
