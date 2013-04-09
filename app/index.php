@@ -23,9 +23,9 @@ if (file_exists($filename)) {
 	        	<center>
 	        		Please login to Raspcontrol!<br/><br/>
 		        	<form name="login" method="post" action="index.php">
-		        		<input type="text" name="username" class="loginForm" onfocus="if(this.value == 'Username') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Username';}" value="Username">
-		        		<input type="password" name="password" class="loginForm" onfocus="if(this.value == 'Password') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}" value="Password"><br/>
-		        		<input type="submit" value="Login" name="login" class="minimal">
+		        		<input type="text" name="username" class="loginForm" placehoder="Username" />
+		        		<input type="password" name="password" class="loginForm" placeholder="Password" /><br/>
+		        		<input type="submit" value="Login" name="login" class="minimal" />
 		        		
 		        		<br/><br/>
 		        		
