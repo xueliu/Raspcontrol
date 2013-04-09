@@ -72,12 +72,8 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
     <div id="content">
       <?php if (isset($_SESSION['message'])) { ?>
       <div class="container">
-        <div class="row">
-          <div class="span8 offset2">
-            <div class="alert alert-error">
-              <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
-            </div>
-          </div>
+        <div class="alert alert-error">
+          <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
         </div>
       </div>
       <?php unset($_SESSION['message']); } ?>
