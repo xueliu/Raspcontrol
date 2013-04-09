@@ -1,47 +1,27 @@
-# [Raspcontrol](http://raspcontrol.com)
+# Raspcontrol
 
-Raspcontrol has been drastically improved since the inital release, we now have improved security, standalone deployment and many new awesome features!
+This a modified version of the excellent [Raspcontrol](/Bioshow/Raspcontrol) from [Bioshox](/Bioshox).
 
-### Getting Started Guide
-##### Typical Requirements:
+### Requierements
 
-Raspcontrol is intended to be used with the PHP 5.4 inbuilt web server.
-
-If your distribution does not support PHP 5.4 then you will need to build it from source or use a HTTP server such as Apache to access Raspcontrol.
-
+You need a web server (typically Apache), with PHP 5.4 installed.
 
 ***
 
-## How to setup:
+## Getting the source
 
-### Getting the source
-
-#### .zip Download
+### .zip download
 
 You can download this as a _.zip_ from the GitHub Repository via the following link: 
 
-	https://github.com/Bioshox/Raspcontrol/zipball/master
+	https://github.com/nicolabricot/Raspcontrol/zipball/master
 		
-#### Git Clone
+### Git clone
 
 If you have Git installed you can clone the repo
 
-	git clone https://github.com/Bioshox/Raspcontrol.git
+	git clone https://github.com/nicolabricot/Raspcontrol.git
 
-### Getting it running with Apache
- 
- Just put the folder in /var/www/status
- 
-### Setting up your account
-				
-Now you will be promted to setup a new account, this will create the initial user to login to the system.
+## Installation
 
-***	
-		
-### Thanks!
-
-Please feel free to contribute to this development!
-
-[raspcontrol.com](http://raspcontrol.com)
-
-Hosting proudly supplied by [Fusion Strike](http://fusionstrike.com)
+Just put the folder _app_ where you web server folder is installed.
