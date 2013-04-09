@@ -1,6 +1,6 @@
 # Raspcontrol
 
-This a modified version of the excellent [Raspcontrol](//github.com/Bioshow/Raspcontrol) from [Bioshox](//github.com/Bioshox).
+This a modified version of the excellent [Raspcontrol](//github.com/Bioshox/Raspcontrol) from [Bioshox](//github.com/Bioshox).
 
 ### Requierements
 
