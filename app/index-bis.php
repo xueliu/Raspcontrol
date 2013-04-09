@@ -1,8 +1,30 @@
 <?php
 
+namespace lib;
+
+spl_autoload_extensions('.php');
+spl_autoload_register();
+
+session_start();
+
+// authentification
+if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
+  if (empty($_GET['page'])) $_GET['page'] = 'home';
+  $_GET['page'] = htmlspecialchars($_GET['page']);
+  str_replace("\0", '', $_GET['page']);
+  str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
+}
+else {
+  $_GET['page'] = 'login';
+}
+
+$page = 'pages'. DIRECTORY_SEPARATOR.$_GET['page']. '.php';
+$page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
+
+require 'config.php';
 
 ?><!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Raspcontrol</title>
@@ -22,13 +44,19 @@
     <header>
       <div class="container">
         <img src="img/raspcontrol.png" alt="rbpi" />
-        <h1>Raspcontrol</h1>
+        <h1><a href="<?php echo INDEX; ?>">Raspcontrol</a></h1>
         <h2>The Raspberry Pi Control Center</h2>
       </div>
     </header>
+
+    <?php if (isset($message)) { ?>
+    <div class="container">
+      <p><strong>Message:</strong><br /><?php echo $message; ?></p>
+    </div>
+    <?php } ?>
     
     <?php
-      include 'pages/home.php';
+      include $page;
     ?>
 
     <footer>
@@ -38,7 +66,7 @@
       </div>
     </footer>
 
-    <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </body>
 </html>
