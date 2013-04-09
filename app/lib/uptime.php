@@ -4,7 +4,7 @@ namespace lib;
 
 class Uptime {
   
-  public abstract function uptime() {
+  public static function uptime() {
 
     $uptime = shell_exec("cat /proc/uptime");
     $uptime = explode(" ", $uptime); 
@@ -13,7 +13,7 @@ class Uptime {
 
   }
 
-  protected abstract function readbleTime($seconds) {
+  protected static function readbleTime($seconds) {
     $y = floor($seconds / 60/60/24/365);
     $d = floor($seconds/60/60/24) % 365;
     $h = floor(($seconds / 3600) % 24);
