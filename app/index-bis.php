@@ -7,21 +7,24 @@ spl_autoload_register();
 
 session_start();
 
+require 'config.php';
+
 // authentification
 if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
   if (empty($_GET['page'])) $_GET['page'] = 'home';
   $_GET['page'] = htmlspecialchars($_GET['page']);
   str_replace("\0", '', $_GET['page']);
   str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
+
+  $display = true;
 }
 else {
   $_GET['page'] = 'login';
+  $display = false;
 }
 
 $page = 'pages'. DIRECTORY_SEPARATOR.$_GET['page']. '.php';
 $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
-
-require 'config.php';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -43,17 +46,24 @@ require 'config.php';
 
     <header>
       <div class="container">
-        <img src="img/raspcontrol.png" alt="rbpi" />
+        <a href="<?php echo INDEX; ?>"><img src="img/raspcontrol.png" alt="rbpi" /></a>
         <h1><a href="<?php echo INDEX; ?>">Raspcontrol</a></h1>
         <h2>The Raspberry Pi Control Center</h2>
       </div>
     </header>
 
-    <?php if (isset($message)) { ?>
+    <?php if (isset($_SESSION['message'])) { ?>
     <div class="container">
-      <p><strong>Message:</strong><br /><?php echo $message; ?></p>
+      <div class="row">
+        <div class="span8 offset2">
+          <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
+          </div>
+        </div>
+      </div>
     </div>
-    <?php } ?>
+    <?php unset($_SESSION['message']); } ?>
     
     <?php
       include $page;
@@ -61,7 +71,7 @@ require 'config.php';
 
     <footer>
       <div class="container">
-        <p>Powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="//twitter.com/nicolabricot">@nicolabricot</a>.</p>
+        <p>Initially powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="//twitter.com/nicolabricot">@nicolabricot</a>.</p>
         <p>Sources are available on <a href="https://github.com/nicolabricot/Raspcontrol">Github</a>.</p>
       </div>
     </footer>
