@@ -52,22 +52,24 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
       </div>
     </header>
 
-    <?php if (isset($_SESSION['message'])) { ?>
-    <div class="container">
-      <div class="row">
-        <div class="span8 offset2">
-          <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
+    <div id="content">
+      <?php if (isset($_SESSION['message'])) { ?>
+      <div class="container">
+        <div class="row">
+          <div class="span8 offset2">
+            <div class="alert alert-error">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
+            </div>
           </div>
         </div>
       </div>
+      <?php unset($_SESSION['message']); } ?>
+      
+      <?php
+        include $page;
+      ?>
     </div>
-    <?php unset($_SESSION['message']); } ?>
-    
-    <?php
-      include $page;
-    ?>
 
     <footer>
       <div class="container">
