@@ -6,7 +6,6 @@ set_error_handler(function() {
   throw new Exception('Failed to open authentification file in '. FILE_PASS);
 });
 
-
 require 'config.php';
 
 // logout
@@ -19,8 +18,7 @@ if (isset($_GET['logout'])) {
 else if (isset($_POST['username']) && isset($_POST['password']) && !empty($_POST['username']) && !empty($_POST['password'])) {
   try {
     //*
-    $json = file_get_contents(FILE_PASS);
-    $db = json_decode();
+    $db = json_decode(file_get_contents(FILE_PASS));
     $username = $db->{'user'};
     $password = $db->{'password'};
     /*/
