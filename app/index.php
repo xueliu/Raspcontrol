@@ -1,74 +1,101 @@
 <?php
-//session_start();
 
-$filename = '/etc/raspcontrol/database.aptmnt';
+namespace lib;
 
-if (file_exists($filename)) {
-		session_start();
+spl_autoload_extensions('.php');
+spl_autoload_register();
 
-		if($_SESSION['username'] != "")
-                {
-			require('main.php'); 
-			die;
-		}
+session_start();
 
-		require('_lib/includes/_header.php');
-		require('_lib/classes/_login.php'); 
-?>
+require 'config.php';
 
-	    <div id="firstBlockContainer">
-	        <div class="firstBlockWrapper">
-	        	
-	        	<div style="padding-top: 20px;">
-	        	<center>
-	        		Please login to Raspcontrol!<br/><br/>
-		        	<form name="login" method="post" action="index.php">
-		        		<input type="text" name="username" class="loginForm" placeholder="Username" />
-		        		<input type="password" name="password" class="loginForm" placeholder="Password" /><br/>
-		        		<input type="submit" value="Login" name="login" class="minimal" />
-		        		
-		        		<br/><br/>
-		        		
-		        		<?php if($wrong == 1){
-			        		echo "<font color='red'>Incorrect Username/Password</font>";
-		        		}
-		        		?>
-		        		
-		        	</form>
-		        	
-		        	<br/><br/>
-		        	Raspcontrol has been drastically improved! &middot <a href="https://github.com/Bioshox/Raspcontrol/blob/master/README.md" target="_blank">Find out more</a> 
-		        	
-	        	</center>
-	        	</div>
-	        	
-	       	</div>
-	       	<br/><br/><br/>
-	    </div>
-
-<?php    
-	} else {
-	require('_lib/includes/_header.php');
-?>
-
-	<div id="firstBlockContainer">
-	        <div class="firstBlockWrapper">
-	        	<strong>Raspcontrol Installation</strong>
-			<br/><br/>	
-				<center>Please choose a username and password to login with<br/><br/>
-		        	<form name="setup" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-		        		<input type="text" name="username" class="loginForm" onfocus="if(this.value == 'Username') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Username';}" value="Username">
-		        		<input type="password" name="password" class="loginForm" onfocus="if(this.value == 'Password') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}" value="Password"><br/>
-		        		<input type="submit" value="Create Account" name="setup" class="minimal">
-		        		
-		        		
-		        		</center>
-				<br/><br/><br/><br/>
-				</form>
-			</div>
-	</div>
-	
-<?php
+// authentification
+if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
+  if (empty($_GET['page'])) $_GET['page'] = 'home';
+  $_GET['page'] = htmlspecialchars($_GET['page']);
+  str_replace("\0", '', $_GET['page']);
+  str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
+  $display = true;
+}
+else {
+  $_GET['page'] = 'login';
+  $display = false;
 }
 
-require('_lib/includes/_footer.php'); 
+$page = 'pages'. DIRECTORY_SEPARATOR.$_GET['page']. '.php';
+$page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
+
+?><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Raspcontrol</title>
+    <meta name="author" content="Nicolas Devenet" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <link href="css/raspcontrol.css" rel="stylesheet" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a href="<?php echo INDEX; ?>"><img src="img/raspcontrol.png" alt="rbpi" /></a>
+        <h1><a href="<?php echo INDEX; ?>">Raspcontrol</a></h1>
+        <h2>The Raspberry Pi Control Center</h2>
+      </div>
+    </header>
+
+    <?php if ($display) : ?>
+
+    <div class="navbar navbar-static-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li><a href="<?php echo INDEX;?>"><i class="icon-home icon-white"></i> Home</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a href="<?php echo LOGIN; ?>?logout"><i class="icon-off icon-white"></i> Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <?php endif; ?>
+
+    <div id="content">
+      <?php if (isset($_SESSION['message'])) { ?>
+      <div class="container">
+        <div class="alert alert-error">
+          <strong>Oups!</strong> <?php echo $_SESSION['message']; ?>
+        </div>
+      </div>
+      <?php unset($_SESSION['message']); } ?>
+      
+<?php
+  include $page;
+?>
+
+    </div> <!-- /content -->
+
+    <footer>
+      <div class="container">
+        <p>Initially powered by <a href="https://github.com/Bioshox/Raspcontrol">Raspcontrol</a> and adapted by <a href="//twitter.com/nicolabricot">@nicolabricot</a>.</p>
+        <p>Sources are available on <a href="https://github.com/nicolabricot/Raspcontrol">Github</a>.</p>
+      </div>
+    </footer>
+
+    <?php
+      if ($display)
+        echo '<!--<script src="js/bootstrap.min.js"></script>-->';
+      else
+        echo '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
+    ?>
+
+  </body>
+</html>
