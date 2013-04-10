@@ -63,9 +63,9 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-tasks"></i> heat</td>
             <td class="icon"><?php echo icon_alert($cpu['alert']); ?></td>
             <td>
-              loads: <?php echo cpu['loads']; ?> [1 min] &middot; <?php echo cpu['loads5']; ?> [5 min] &middot; <?php echo cpu['loads15']; ?> [15 min]
+              loads: <?php echo $cpu['loads']; ?> [1 min] &middot; <?php echo $cpu['loads5']; ?> [5 min] &middot; <?php echo $cpu['loads15']; ?> [15 min]
               <br />running at <?php echo cpu['current']; ?> MHz
-              <br />(min: <?php echo cpu['min']; ?>, max: <?php echo cpu['max']; ?>, governor: <?php echo $cpu['governor']; ?>)
+              <br />(min: <?php echo $cpu['min']; ?>, max: <?php echo $cpu['max']; ?>, governor: <?php echo $cpu['governor']; ?>)
             </td>
           </tr>
 
@@ -76,7 +76,7 @@ function icon_alert($alert) {
               <div class="progress">
                 <div class="bar bar-<?php echo $cpu_heat['alert']; ?>" style="width: <?php echo $cpu_heat['percentage']; ?>%;"><?php echo $swap['percentage']; ?>%</div>
               </div>
-              temperature: <?php echo cpu_heat['degrees']; ?>°C
+              temperature: <?php echo $cpu_heat['degrees']; ?>°C
             </td>
           </tr>
 
