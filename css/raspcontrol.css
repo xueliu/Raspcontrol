@@ -148,10 +148,14 @@ footer a:hover {
   }
   .container,
   .navbar .container,
-  .progress {
+  .progress,
+  .navbar-inner {
     max-width: 100% !important;
   }
   header img {
     display: none;
+  }
+  header {
+    padding: 0 10px;
   }
 }
