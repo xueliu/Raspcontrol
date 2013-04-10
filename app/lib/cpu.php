@@ -30,18 +30,18 @@ class CPU {
     return $result;
   }
 
+  private static $MaxTemp = 85;
+
   public static function heat() {
 
     $result = array();
-
-    $maxtemp = 85;
 
     $fh = fopen("/sys/class/thermal/thermal_zone0/temp", 'r');
     $currenttemp = fgets($fh);
     fclose($fh);
 
     $result['degrees'] = round($currenttemp / 1000);
-    $result['percentage'] = round($degrees_c / $maxtemp * 100);
+    $result['percentage'] = round($result['degrees'] / self::$MaxTemp * 100);
     
     if ($percentage >= '80')
       $result['alert'] = 'danger';
