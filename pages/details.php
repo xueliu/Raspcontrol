@@ -115,7 +115,7 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
             <td class="infos">
-              internal IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span>
+              IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [external] &middot; <span class="text-info"><?php echo Rbpi::ip(true); ?></span> [internal]
               <br />connections: <?php echo $network['connections']; ?>
             </td>
           </tr>
