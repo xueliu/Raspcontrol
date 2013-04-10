@@ -3,24 +3,28 @@
 namespace lib;
 use lib\Uptime;
 use lib\Memory;
+use lib\CPU;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
-$ram_alert = $ram['alert'];
-$ram_per = $ram['percentage'];
-$ram_free = $ram['free'];
-$ram_used = $ram['used'];
-$ram_total = $ram['total'];
 $swap = Memory::swap();
-$swap_alert = $swap['alert'];
-$swap_per = $swap['percentage'];
-$swap_free = $swap['free'];
-$swap_used = $swap['used'];
-$swap_total = $swap['total'];
+$cpu = CPU::cpu();
+$cpu_heat = CPU::heat();
 
 
 function icon_alert($alert) {
-  echo '<i class="icon-'. ($alert == 'success' ? 'ok' : 'warning-sign') .'"></i>';
+  echo '<i class="icon-';
+  switch($alert) {
+    case 'success':
+      echo 'ok';
+      break;
+    case 'danger':
+      echo 'warning-sign';
+      break;
+    default:
+      echo 'exclamation-sign';
+  }
+  echo '"></i>';
 }
 
 ?>
@@ -32,25 +36,49 @@ function icon_alert($alert) {
             <td class="icon"></td>
             <td><?php echo $uptime; ?></td>
           </tr>
+          
           <tr>
             <td class="check"><i class="icon-asterisk"></i> RAM</td>
-            <td class="icon"><?php echo icon_alert($ram_alert); ?></td>
+            <td class="icon"><?php echo icon_alert($ram['alert']); ?></td>
             <td>
               <div class="progress">
-                <div class="bar bar-<?php echo $ram_alert; ?>" style="width: <?php echo $ram_per; ?>%;"><?php echo $ram_per; ?>%</div>
+                <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
               </div>
-              free: <?php echo $ram_free; ?> Mb, used: <?php echo $ram_used; ?> Mb, total: <?php echo $ram_total; ?> Mb
+              free: <?php echo $ram['free']; ?> Mb, used: <?php echo $ram['used']; ?> Mb, total: <?php echo $ram['total']; ?> Mb
             </td>
           </tr>
+          
           <tr>
             <td class="check"><i class="icon-refresh"></i> Swap</td>
-            <td class="icon"><?php echo icon_alert($swap_alert); ?></td>
+            <td class="icon"><?php echo icon_alert($swap['alert']); ?></td>
             <td>
               <div class="progress">
-                <div class="bar bar-<?php echo $swap_alert; ?>" style="width: <?php echo $swap_per; ?>%;"><?php echo $swap_per; ?>%</div>
+                <div class="bar bar-<?php echo $swap['alert']; ?>" style="width: <?php echo $swap['percentage']; ?>%;"><?php echo $swap['percentage']; ?>%</div>
               </div>
-              free: <?php echo $swap_free; ?> Mb, used: <?php echo $swap_used; ?> Mb, total: <?php echo $swap_total; ?> Mb
+              free: <?php echo $swap['free']; ?> Mb, used: <?php echo $swap['used']; ?> Mb, total: <?php echo $swap['total']; ?> Mb
             </td>
           </tr>
+
+          <tr>
+            <td class="check"><i class="icon-tasks"></i> heat</td>
+            <td class="icon"><?php echo icon_alert($cpu['alert']); ?></td>
+            <td>
+              loads: <?php echo cpu['loads']; ?> [1 min] &middot; <?php echo cpu['loads5']; ?> [5 min] &middot; <?php echo cpu['loads15']; ?> [15 min]
+              <br />running at <?php echo cpu['current']; ?> MHz
+              <br />(min: <?php echo cpu['min']; ?>, max: <?php echo cpu['max']; ?>, governor: <?php echo $cpu['governor']; ?>)
+            </td>
+          </tr>
+
+          <tr>
+            <td class="check"><i class="icon-fire"></i> CPU heat</td>
+            <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
+            <td>
+              <div class="progress">
+                <div class="bar bar-<?php echo $cpu_heat['alert']; ?>" style="width: <?php echo $cpu_heat['percentage']; ?>%;"><?php echo $swap['percentage']; ?>%</div>
+              </div>
+              temperature: <?php echo cpu_heat['degrees']; ?>°C
+            </td>
+          </tr>
+
         </table>
       </div>
