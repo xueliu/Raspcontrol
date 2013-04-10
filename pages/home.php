@@ -39,14 +39,19 @@ function icon_alert($alert) {
 ?>
 
       <div class="container home">
-        <div class="infos">
-          <div>
+        <div class="row-fluid infos">
+          <div class="span4">
             <i class="icon-home"></i> <?php echo Rbpi::hostname(); ?>
-            <span style="padding:0 15px;">&middot;</span>
-            <i class="icon-map-marker"></i> <?php echo Rbpi::internalIP(); ?> [internal]
-            <span style="padding:0 15px;">&middot;</span>
+          </div>
+          <div class="span4">
+            <i class="icon-map-marker"></i> <abbr title="Internal IP"><?php echo Rbpi::internalIP(); ?></abbr>
+          </div>
+          <div class="span4">
             <i class="icon-play-circle"></i> Server <?php echo Rbpi::webServer(); ?>
           </div>
+        </div>
+
+        <div class="infos">
           <div>
             <i class="icon-time"></i> <?php echo $uptime; ?>
           </div>

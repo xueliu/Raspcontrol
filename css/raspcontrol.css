@@ -101,9 +101,14 @@ header img {
   margin-top: 10px;
 }
 
-.rapid-status div, .infos div {
+.rapid-status div {
   margin-top: 20px;
 }
+.infos div {
+  margin-bottom: 20px;
+}
+
+
 /*
  *  Footer
  */
