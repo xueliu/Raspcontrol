@@ -37,7 +37,7 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-cog"></i> System</td>
             <td class="icon"></td>
-            <td>
+            <td class="infos">
               hostname: <span class="text-info"><?php echo Rbpi::hostname(); ?></span>
               <br />distribution: <span class="text-info"><?php echo Rbpi::distribution(); ?></span>
               <br />kernel: <span class="text-info"><?php echo Rbpi::kernel(); ?></span>
@@ -48,13 +48,13 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-time"></i> Uptime</td>
             <td class="icon"></td>
-            <td><?php echo $uptime; ?></td>
+            <td class="infos"><?php echo $uptime; ?></td>
           </tr>
           
           <tr>
             <td class="check"><i class="icon-asterisk"></i> RAM</td>
             <td class="icon"><?php echo icon_alert($ram['alert']); ?></td>
-            <td>
+            <td class="infos">
               <div class="progress">
                 <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
               </div>
@@ -65,7 +65,7 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-refresh"></i> Swap</td>
             <td class="icon"><?php echo icon_alert($swap['alert']); ?></td>
-            <td>
+            <td class="infos">
               <div class="progress">
                 <div class="bar bar-<?php echo $swap['alert']; ?>" style="width: <?php echo $swap['percentage']; ?>%;"><?php echo $swap['percentage']; ?>%</div>
               </div>
@@ -76,7 +76,7 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-tasks"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu['alert']); ?></td>
-            <td>
+            <td class="infos">
               loads: <?php echo $cpu['loads']; ?> [1 min] &middot; <?php echo $cpu['loads5']; ?> [5 min] &middot; <?php echo $cpu['loads15']; ?> [15 min]
               <br />running at <span class="text-info"><?php echo $cpu['current']; ?></span> (min: <?php echo $cpu['min']; ?>  &middot;  max: <?php echo $cpu['max']; ?>)
               <br />governor: <?php echo $cpu['governor']; ?>
@@ -86,7 +86,7 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-fire"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
-            <td>
+            <td class="infos">
               <div class="progress">
                 <div class="bar bar-<?php echo $cpu_heat['alert']; ?>" style="width: <?php echo $cpu_heat['percentage']; ?>%;"><?php echo $cpu_heat['percentage']; ?>%</div>
               </div>
@@ -99,7 +99,7 @@ function icon_alert($alert) {
             <?php
               for ($i=0; $i<sizeof($hdd); $i++) {
                 echo '<td class="icon" style="padding-left: 10px;">', icon_alert($hdd[$i]['alert']), '</td>
-            <td>
+            <td class="infos">
               <i class="icon-folder-open"></i> ', $hdd[$i]['name'] , '
               <div class="progress">
                 <div class="bar bar-', $hdd[$i]['alert'], '" style="width: ', $hdd[$i]['percentage'], '%;">', $hdd[$i]['percentage'], '%</div>
@@ -114,7 +114,7 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
-            <td>
+            <td class="infos">
               internal IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span>
               <br />connections: <?php echo $network['connections']; ?>
             </td>
