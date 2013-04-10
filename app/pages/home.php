@@ -4,13 +4,14 @@ namespace lib;
 use lib\Uptime;
 use lib\Memory;
 use lib\CPU;
+use lib\Storage;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
 $swap = Memory::swap();
 $cpu = CPU::cpu();
 $cpu_heat = CPU::heat();
-
+$hdd = Storage::hdd();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -18,7 +19,7 @@ function icon_alert($alert) {
     case 'success':
       echo 'ok';
       break;
-    case 'danger':
+    case 'warning':
       echo 'warning-sign';
       break;
     default:
@@ -44,7 +45,7 @@ function icon_alert($alert) {
               <div class="progress">
                 <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
               </div>
-              free: <?php echo $ram['free']; ?> Mb, used: <?php echo $ram['used']; ?> Mb, total: <?php echo $ram['total']; ?> Mb
+              free: <?php echo $ram['free']; ?> Mb  &middot; used: <?php echo $ram['used']; ?> Mb &middot; total: <?php echo $ram['total']; ?> Mb
             </td>
           </tr>
           
@@ -55,7 +56,7 @@ function icon_alert($alert) {
               <div class="progress">
                 <div class="bar bar-<?php echo $swap['alert']; ?>" style="width: <?php echo $swap['percentage']; ?>%;"><?php echo $swap['percentage']; ?>%</div>
               </div>
-              free: <?php echo $swap['free']; ?> Mb, used: <?php echo $swap['used']; ?> Mb, total: <?php echo $swap['total']; ?> Mb
+              free: <?php echo $swap['free']; ?> Mb  &middot; used: <?php echo $swap['used']; ?> Mb &middot; total: <?php echo $swap['total']; ?> Mb
             </td>
           </tr>
 
@@ -64,7 +65,7 @@ function icon_alert($alert) {
             <td class="icon"><?php echo icon_alert($cpu['alert']); ?></td>
             <td>
               loads: <?php echo $cpu['loads']; ?> [1 min] &middot; <?php echo $cpu['loads5']; ?> [5 min] &middot; <?php echo $cpu['loads15']; ?> [15 min]
-              <br />running at <?php echo $cpu['current']; ?> (min: <?php echo $cpu['min']; ?>, max: <?php echo $cpu['max']; ?>)
+              <br />running at <?php echo $cpu['current']; ?> (min: <?php echo $cpu['min']; ?>  &middot;  max: <?php echo $cpu['max']; ?>)
               <br />governor: <?php echo $cpu['governor']; ?>
             </td>
           </tr>
@@ -79,6 +80,23 @@ function icon_alert($alert) {
               heat: <?php echo $cpu_heat['degrees']; ?>°C
             </td>
           </tr>
+
+          <tr class="storage">
+            <td class="check" rowspan="<?php echo sizeof($hdd); ?>"><i class="icon-hdd"></i> Storage</td>
+            <?php
+              for ($i=0; $i<sizeof($hdd); $i++) {
+                echo '<td class="icon">', icon_alert($hdd[$i]['alert']), '</td>
+            <td>
+              <i class="icon-folder-open"></i> ', $hdd[$i]['name'] , '
+              <div class="progress">
+                <div class="bar bar-', $hdd[$i]['alert'], '" style="width: ', $hdd[$i]['percentage'], '%;">', $hdd[$i]['percentage'], '%</div>
+              </div>
+              free: ', $hdd[$i]['free'], 'b &middot; used: ', $hdd[$i]['used'], 'b &middot; total: ', $hdd[$i]['total'], 'b &middot; format: ', $hdd[$i]['format'], '
+            </td>
+            </tr>
+            ', ($i == sizeof($hdd)-1) ? null : '<tr class="storage">';
+              }
+            ?>
 
         </table>
       </div>

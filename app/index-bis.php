@@ -58,7 +58,6 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
         <div class="container">
           <ul class="nav">
             <li><a href="<?php echo INDEX;?>"><i class="icon-home icon-white"></i> Home</a></li>
-            <li><a href="<?php echo $_SERVER['REQUEST_URI']; ?>"><i class="icon-refresh icon-white"></i> Refresh</a></li>
           </ul>
           <ul class="nav pull-right">
             <li><a href="<?php echo LOGIN; ?>?logout"><i class="icon-off icon-white"></i> Logout</a></li>
