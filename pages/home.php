@@ -6,6 +6,7 @@ use lib\Memory;
 use lib\CPU;
 use lib\Storage;
 use lib\Network;
+use lib\Rbpi;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -38,33 +39,41 @@ function icon_alert($alert) {
 ?>
 
       <div class="container home">
-        <div class="row-fluid">
-          <div class="span10">
-            <i class="icon-time"></i> Uptime <?php echo $uptime; ?>
+        <div class="infos">
+          <div>
+            <i class="icon-home"></i> <?php echo Rbpi::hostname(); ?>
+            <span style="padding:0 15px;">&middot;</span>
+            <i class="icon-map-marker"></i> <?php echo Rbpi::internalIP(); ?> [internal]
+            <span style="padding:0 15px;">&middot;</span>
+            <i class="icon-play-circle"></i> Server <?php echo Rbpi::webServer(); ?>
+          </div>
+          <div>
+            <i class="icon-time"></i> <?php echo $uptime; ?>
           </div>
         </div>
 
         <div class="row-fluid">
-          <div class="span2">
-            <i class="icon-asterisk"></i> RAM <?php echo icon_alert($ram['alert']); ?>
+          <div class="span4 rapid-status">
+            <div>
+              <i class="icon-asterisk"></i> RAM <?php echo icon_alert($ram['alert']); ?>
+            </div>
+            <div>
+              <i class="icon-refresh"></i> Swap <?php echo icon_alert($swap['alert']); ?>
+            </div>
+            <div>
+              <i class="icon-tasks"></i> CPU <?php echo icon_alert($cpu['alert']); ?>
+            </div>
+            <div>
+              <i class="icon-fire"></i> CPU <?php echo icon_alert($cpu_heat['alert']); ?>
+            </div>
           </div>
-          <div class="span2 offset1">
-            <i class="icon-refresh"></i> Swap <?php echo icon_alert($swap['alert']); ?>
-          </div>
-          <div class="span2 offset1">
-            <i class="icon-tasks"></i> CPU <?php echo icon_alert($cpu['alert']); ?>
-          </div>
-          <div class="span2 offset1">
-            <i class="icon-fire"></i> CPU <?php echo icon_alert($cpu_heat['alert']); ?>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span2">
-            <i class="icon-hdd"></i> Storage <?php echo icon_alert($hdd_alert); ?>
-          </div>
-          <div class="span2 offset1">
-            <i class="icon-globe"></i> Network <?php echo icon_alert($network['alert']); ?>
+          <div class="span4 offset4 rapid-status">
+            <div>
+              <i class="icon-hdd"></i> Storage <?php echo icon_alert($hdd_alert); ?>
+            </div>
+            <div>
+              <i class="icon-globe"></i> Network <?php echo icon_alert($network['alert']); ?>
+            </div>
           </div>
         </div>
 
