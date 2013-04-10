@@ -47,7 +47,7 @@ function icon_alert($alert) {
               <div class="progress">
                 <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
               </div>
-              free: <?php echo $ram['free']; ?> Mb  &middot; used: <?php echo $ram['used']; ?> Mb &middot; total: <?php echo $ram['total']; ?> Mb
+              free: <?php echo $ram['free']; ?>Mb  &middot; used: <?php echo $ram['used']; ?>Mb &middot; total: <?php echo $ram['total']; ?>Mb
             </td>
           </tr>
           
@@ -103,7 +103,10 @@ function icon_alert($alert) {
           <tr>
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
-            <td>connections: <?php echo $network['connections']; ?></td>
+            <td>
+              internal IP: <?php echo Rbpi::ip(); ?>
+              <br />connections: <?php echo $network['connections']; ?>
+            </td>
           </tr>
 
         </table>

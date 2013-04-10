@@ -24,7 +24,7 @@ class Rbpi {
     return gethostname();
   }
 
-  public static function internalIP() {
+  public static function ip() {
     return $_SERVER['SERVER_ADDR'];
   }
 

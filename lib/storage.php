@@ -18,7 +18,7 @@ class Storage {
       $result[$i]['name'] = $mounted;
       $result[$i]['total'] = $size;
       $result[$i]['free'] = $available;
-      $result[$i]['used'] = $size - $available;
+      $result[$i]['used'] = ($size - $available) . substr($size, -1);
       $result[$i]['format'] = $type;
       
       $result[$i]['percentage'] = rtrim($percentage, '%');
