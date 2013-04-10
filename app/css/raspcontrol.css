@@ -86,9 +86,8 @@ header img {
   font-weight: bold;
 }
 .home td.icon {
-  text-align: center;
-  padding-left: 15px;
-  padding-right: 15px;
+  text-align: left;
+  padding-right: 20px;
 }
 .home .storage td {
   padding: 15px 0;
