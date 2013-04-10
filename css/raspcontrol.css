@@ -87,8 +87,7 @@ header img {
   min-width: 100px;
 }
 .details td.icon {
-  min-width: 40px;
-  text-align: left;
+  min-width: 25px;
   padding-left: 10px;
   padding-right: 20px;
 }

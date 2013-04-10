@@ -98,7 +98,7 @@ function icon_alert($alert) {
             <td class="check" rowspan="<?php echo sizeof($hdd); ?>"><i class="icon-hdd"></i> Storage</td>
             <?php
               for ($i=0; $i<sizeof($hdd); $i++) {
-                echo '<td class="icon">', icon_alert($hdd[$i]['alert']), '</td>
+                echo '<td class="icon" style="padding-left: 10px;">', icon_alert($hdd[$i]['alert']), '</td>
             <td>
               <i class="icon-folder-open"></i> ', $hdd[$i]['name'] , '
               <div class="progress">
