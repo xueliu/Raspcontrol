@@ -21,9 +21,9 @@ class Storage {
       $result[$i]['used'] = $size - $available;
       $result[$i]['format'] = $type;
       
-      $result[$i]['percentage'] = $percentage;
+      $result[$i]['percentage'] = rtrim($percentage, '%');
 
-      if(rtrim($percentage, '%') > '80')
+      if($result[$i]['percentage'] > '80')
         $result[$i]['alert'] = 'warning';
       else
         $result[$i]['alert'] = 'success';
