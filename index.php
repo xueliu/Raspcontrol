@@ -16,6 +16,10 @@ if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
   str_replace("\0", '', $_GET['page']);
   str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
   $display = true;
+  function is_active($page) {
+    if ($page == $_GET['page'])
+      echo ' class="active"';
+  }
 }
 else {
   $_GET['page'] = 'login';
@@ -57,8 +61,8 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-            <li><a href="<?php echo INDEX; ?>"><i class="icon-home icon-white"></i> Home</a></li>
-            <li><a href="<?php echo DETAILS; ?>"><i class="icon-search icon-white"></i> Details</a></li>
+            <li<?php is_active('home'); ?>><a href="<?php echo INDEX; ?>"><i class="icon-home icon-white"></i> Home</a></li>
+            <li<?php is_active('details'); ?>><a href="<?php echo DETAILS; ?>"><i class="icon-search icon-white"></i> Details</a></li>
           </ul>
           <ul class="nav pull-right">
             <li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>
