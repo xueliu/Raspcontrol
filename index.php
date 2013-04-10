@@ -33,7 +33,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
     <meta name="author" content="Nicolas Devenet" />
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-    <!--<link rel="icon" type="image/png" href="img/favicon.png" />-->
+    <link rel="icon" type="image/png" href="img/favicon.ico" />
     <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
     <link href="css/raspcontrol.css" rel="stylesheet" media="screen" />
@@ -57,10 +57,11 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-            <li><a href="<?php echo INDEX;?>"><i class="icon-home icon-white"></i> Home</a></li>
+            <li><a href="<?php echo INDEX; ?>"><i class="icon-home icon-white"></i> Home</a></li>
+            <li><a href="<?php echo DETAILS; ?>"><i class="icon-search icon-white"></i> Details</a></li>
           </ul>
           <ul class="nav pull-right">
-            <li><a href="<?php echo LOGIN; ?>?logout"><i class="icon-off icon-white"></i> Logout</a></li>
+            <li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>
           </ul>
         </div>
       </div>

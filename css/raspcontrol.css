@@ -72,31 +72,32 @@ header img {
   margin: 20px 0 60px 0;
 }
 
-.home table {
+.details table {
   width: 100%;
 }
-.home tr {
+.details tr {
   vertical-align: top;
   /*border-bottom: 1px solid #dedede;*/
 }
-.home td {
+.details td {
   padding: 20px 0;
 }
-.home td.check {
+.details td.check {
   font-weight: bold;
 }
-.home td.icon {
+.details td.icon {
   text-align: left;
+  padding-left: 10px;
   padding-right: 20px;
 }
-.home .storage td {
+.details .storage td {
   padding: 15px 0;
 }
 
-.home .progress {
+.details .progress {
   margin-bottom: 8px;
 }
-.home .storage .progress {
+.details .storage .progress {
   margin-top: 10px;
 }
 
