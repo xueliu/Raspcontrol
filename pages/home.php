@@ -53,31 +53,31 @@ function icon_alert($alert) {
 
         <div class="infos">
           <div>
-            <i class="icon-time"></i> <?php echo $uptime; ?>
+            <i class="icon-time"></i> <a href="<?php echo DETAILS; ?>#check-uptime"><?php echo $uptime; ?></a>
           </div>
         </div>
 
         <div class="row-fluid">
           <div class="span4 rapid-status">
             <div>
-              <i class="icon-asterisk"></i> RAM <?php echo icon_alert($ram['alert']); ?>
+              <i class="icon-asterisk"></i> RAM <a href="<?php echo DETAILS; ?>#check-ram"><?php echo icon_alert($ram['alert']); ?></a>
             </div>
             <div>
-              <i class="icon-refresh"></i> Swap <?php echo icon_alert($swap['alert']); ?>
+              <i class="icon-refresh"></i> Swap <a href="<?php echo DETAILS; ?>#check-swap"><?php echo icon_alert($swap['alert']); ?></a>
             </div>
             <div>
-              <i class="icon-tasks"></i> CPU <?php echo icon_alert($cpu['alert']); ?>
+              <i class="icon-tasks"></i> CPU <a href="<?php echo DETAILS; ?>#check-cpu"><?php echo icon_alert($cpu['alert']); ?></a>
             </div>
             <div>
-              <i class="icon-fire"></i> CPU <?php echo icon_alert($cpu_heat['alert']); ?>
+              <i class="icon-fire"></i> CPU <a href="<?php echo DETAILS; ?>#check-cpu-heat"><?php echo icon_alert($cpu_heat['alert']); ?></a>
             </div>
           </div>
           <div class="span4 offset4 rapid-status">
             <div>
-              <i class="icon-hdd"></i> Storage <?php echo icon_alert($hdd_alert); ?>
+              <i class="icon-hdd"></i> Storage <a href="<?php echo DETAILS; ?>#check-storage"><?php echo icon_alert($hdd_alert); ?></a>
             </div>
             <div>
-              <i class="icon-globe"></i> Network <?php echo icon_alert($network['alert']); ?>
+              <i class="icon-globe"></i> Network <a href="<?php echo DETAILS; ?>#check-network"><?php echo icon_alert($network['alert']); ?></a>
             </div>
           </div>
         </div>

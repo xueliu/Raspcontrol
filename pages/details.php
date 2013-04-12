@@ -35,7 +35,7 @@ function icon_alert($alert) {
 
       <div class="container details">
         <table>
-          <tr>
+          <tr id="check-system">
             <td class="check"><i class="icon-cog"></i> System</td>
             <td class="icon"></td>
             <td class="infos">
@@ -46,13 +46,13 @@ function icon_alert($alert) {
             </td>
           </tr>
 
-          <tr>
+          <tr id="check-uptime">
             <td class="check"><i class="icon-time"></i> Uptime</td>
             <td class="icon"></td>
             <td class="infos"><?php echo $uptime; ?></td>
           </tr>
           
-          <tr>
+          <tr id="check-ram">
             <td class="check"><i class="icon-asterisk"></i> RAM</td>
             <td class="icon"><?php echo icon_alert($ram['alert']); ?></td>
             <td class="infos">
@@ -63,7 +63,7 @@ function icon_alert($alert) {
             </td>
           </tr>
           
-          <tr>
+          <tr id="check-swap">
             <td class="check"><i class="icon-refresh"></i> Swap</td>
             <td class="icon"><?php echo icon_alert($swap['alert']); ?></td>
             <td class="infos">
@@ -74,7 +74,7 @@ function icon_alert($alert) {
             </td>
           </tr>
 
-          <tr>
+          <tr id="check-cpu">
             <td class="check"><i class="icon-tasks"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu['alert']); ?></td>
             <td class="infos">
@@ -84,7 +84,7 @@ function icon_alert($alert) {
             </td>
           </tr>
 
-          <tr>
+          <tr id="check-cpu-heat">
             <td class="check"><i class="icon-fire"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
             <td class="infos">
@@ -95,7 +95,7 @@ function icon_alert($alert) {
             </td>
           </tr>
 
-          <tr class="storage">
+          <tr class="storage" id="check-storage">
             <td class="check" rowspan="<?php echo sizeof($hdd); ?>"><i class="icon-hdd"></i> Storage</td>
             <?php
               for ($i=0; $i<sizeof($hdd); $i++) {
@@ -112,7 +112,7 @@ function icon_alert($alert) {
               }
             ?>
 
-          <tr>
+          <tr id="check-network">
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
             <td class="infos">
