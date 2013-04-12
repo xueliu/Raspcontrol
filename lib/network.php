@@ -4,7 +4,7 @@ namespace lib;
 
 class Network {
   
-  public static function network() {
+  public static function connections() {
 
     $connections = shell_exec("netstat -nta --inet | wc -l");
     $connections--;

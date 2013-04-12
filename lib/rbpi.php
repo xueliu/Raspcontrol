@@ -24,8 +24,8 @@ class Rbpi {
     return gethostname();
   }
 
-  public static function ip($remote = false) {
-    return $remote ? $_SERVER['SERVER_ADDR'] : $_SERVER['REMOTE_ADDR'];
+  public static function ip() {
+    return $_SERVER['SERVER_ADDR'];
   }
 
   public static function webServer() {

@@ -6,6 +6,7 @@ use lib\Memory;
 use lib\CPU;
 use lib\Storage;
 use lib\Network;
+use lib\Rbpi;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -13,7 +14,7 @@ $swap = Memory::swap();
 $cpu = CPU::cpu();
 $cpu_heat = CPU::heat();
 $hdd = Storage::hdd();
-$network = Network::network();
+$network = Network::connections();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -115,7 +116,7 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
             <td class="infos">
-              IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [external] &middot; <span class="text-info"><?php echo Rbpi::ip(true); ?></span> [internal]
+              IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
               <br />connections: <?php echo $network['connections']; ?>
             </td>
           </tr>
