@@ -13,7 +13,7 @@ class Memory {
 		list($total, $used, $free, $shared, $buffers, $cached) = $matches[1];
 
 		$result['percentage'] = round(($used - $buffers - $cached) / $total * 100);
-		if ($result['percentage'] > '80')
+		if ($result['percentage'] => '80')
 			$result['alert'] = 'warning';
 		else
 			$result['alert'] = 'success';
@@ -34,7 +34,7 @@ class Memory {
 		list($total, $used, $free) = $matches[1];
 			
 		$result['percentage'] = round($used / $total * 100);
-		if ($result['percentage'] > '80')
+		if ($result['percentage'] => '80')
 			$result['alert'] = 'warning';
 		else
 			$result['alert'] = 'success';
