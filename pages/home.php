@@ -19,7 +19,7 @@ for ($i=0; $i<sizeof($hdd); $i++) {
   if ($hdd[$i]['alert'] == 'warning')
     $hdd_alert = 'warning';
 }
-$network = Network::network();
+$network = Network::connections();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
