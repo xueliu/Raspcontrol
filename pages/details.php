@@ -39,7 +39,7 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-cog"></i> System</td>
             <td class="icon"></td>
             <td class="infos">
-              hostname: <span class="text-info"><?php echo Rbpi::hostname(); ?></span>
+              hostname: <span class="text-info"><?php echo Rbpi::hostname(true); ?></span>
               <br />distribution: <span class="text-info"><?php echo Rbpi::distribution(); ?></span>
               <br />kernel: <span class="text-info"><?php echo Rbpi::kernel(); ?></span>
               <br />firmware: <span class="text-info"><?php echo Rbpi::firmware(); ?></span>

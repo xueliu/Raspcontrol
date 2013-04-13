@@ -53,7 +53,7 @@ function icon_alert($alert) {
 
         <div class="infos">
           <div>
-            <i class="icon-time"></i> <a href="<?php echo DETAILS; ?>#check-uptime"><?php echo $uptime; ?></a>
+            <a href="<?php echo DETAILS; ?>#check-uptime"><i class="icon-time"></i></a> <?php echo $uptime; ?>
           </div>
         </div>
 

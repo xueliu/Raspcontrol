@@ -20,8 +20,8 @@ class Rbpi {
     return exec("uname -v");
   }
 
-  public static function hostname() {
-    return gethostname();
+  public static function hostname($full = false) {
+    return $full ? exec("hostname -f") : gethostname();
   }
 
   public static function ip() {
