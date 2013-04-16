@@ -42,8 +42,8 @@ function icon_alert($alert) {
             <td class="infos">
               hostname: <span class="text-info"><?php echo Rbpi::hostname(true); ?></span>
               <br />distribution: <span class="text-info"><?php echo Rbpi::distribution(); ?></span>
-              <br />kernel: <span class="text-info"><?php echo Rbpi::kernel(); ?></span>
-              <br />firmware: <span class="text-info"><?php echo Rbpi::firmware(); ?></span>
+              <br />kernel: <?php echo Rbpi::kernel(); ?>
+              <br />firmware: <?php echo Rbpi::firmware(); ?>
             </td>
           </tr>
 
@@ -118,8 +118,8 @@ function icon_alert($alert) {
             <td class="icon"><?php echo icon_alert($net_connections['alert']); ?></td>
             <td class="infos">
               IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
-              <br />received: <?php echo $net_eth['down']; ?>Mb &middot; sent: <?php echo $net_eth['up']; ?>Mb &middot; total: <?php echo $net_eth['total']; ?>Mb
-              <br />connections: <?php echo $net_connections['connections']; ?>
+              <br />received: <strong><?php echo $net_eth['down']; ?>Mb</strong> &middot; sent: <strong><?php echo $net_eth['up']; ?>Mb</strong> &middot; total: <?php echo $net_eth['total']; ?>Mb
+              <br />connections: <strong><?php echo $net_connections['connections']; ?></strong>
             </td>
           </tr>
 
