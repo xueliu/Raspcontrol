@@ -81,7 +81,7 @@ function icon_alert($alert) {
             <td class="infos">
               loads: <?php echo $cpu['loads']; ?> [1 min] &middot; <?php echo $cpu['loads5']; ?> [5 min] &middot; <?php echo $cpu['loads15']; ?> [15 min]
               <br />running at <span class="text-info"><?php echo $cpu['current']; ?></span> (min: <?php echo $cpu['min']; ?>  &middot;  max: <?php echo $cpu['max']; ?>)
-              <br />governor: <?php echo $cpu['governor']; ?>
+              <br />governor: <strong><?php echo $cpu['governor']; ?></strong>
             </td>
           </tr>
 
@@ -119,7 +119,7 @@ function icon_alert($alert) {
             <td class="infos">
               IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
               <br />received: <strong><?php echo $net_eth['down']; ?>Mb</strong> &middot; sent: <strong><?php echo $net_eth['up']; ?>Mb</strong> &middot; total: <?php echo $net_eth['total']; ?>Mb
-              <br />connections: <strong><?php echo $net_connections['connections']; ?></strong>
+              <br />connections: <?php echo $net_connections['connections']; ?>
             </td>
           </tr>
 
