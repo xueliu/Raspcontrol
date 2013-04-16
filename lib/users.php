@@ -1,6 +1,6 @@
 <?php
 
-namespace lib\Users;
+namespace lib;
 
 class Users {
   
