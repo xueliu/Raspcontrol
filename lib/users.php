@@ -4,7 +4,7 @@ namespace lib\Users;
 
 class Users {
   
-  public abstract function connected() {
+  public static function connected() {
 
     $result = array();
 
