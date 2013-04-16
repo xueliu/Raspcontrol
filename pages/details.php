@@ -129,10 +129,16 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-user"></i> Users</td>
             <td class="icon"><span class="badge"><?php echo sizeof($users); ?></span></td>
             <td class="infos">
-              <?php
-                for ($i=0; $i<sizeof($users); $i++) 
-                  echo '<span class="text-info">', $users[$i]['user'] ,'</span> since ', $users[$i]['date'], ' (', $users[$i]['hour'], ') <br />from <strong>', $users[$i]['ip'] ,'</strong> ', $users[$i]['dns'], ($i == sizeof($users)-1) ? null : '<br /><br />';
-              ?>
+              <ul class="unstyled">
+                <?php
+                  if (sizeof($users) > 0) {
+                    for ($i=0; $i<sizeof($users); $i++) 
+                      echo '<li><span class="text-info">', $users[$i]['user'] ,'</span> since ', $users[$i]['date'], ' at ', $users[$i]['hour'], ' from <strong>', $users[$i]['ip'] ,'</strong> ', $users[$i]['dns'], '</li>', "\n";
+                  }
+                  else
+                    echo '<li>No user logged in</li>';
+                ?>
+              </ul>
             </td>
           </tr>
 

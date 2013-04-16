@@ -82,7 +82,7 @@ function icon_alert($alert) {
               <i class="icon-globe"></i> Network <a href="<?php echo DETAILS; ?>#check-network"><?php echo icon_alert($network['alert']); ?></a>
             </div>
             <div>
-              <i class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge"><?php echo $users; ?></span></a>
+              <i class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge pull-right"><?php echo $users; ?></span></a>
             </div>
           </div>
         </div>
