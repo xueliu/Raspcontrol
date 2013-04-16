@@ -136,7 +136,7 @@ function icon_alert($alert) {
                       echo '<li><span class="text-info">', $users[$i]['user'] ,'</span> since ', $users[$i]['date'], ' at ', $users[$i]['hour'], ' from <strong>', $users[$i]['ip'] ,'</strong> ', $users[$i]['dns'], '</li>', "\n";
                   }
                   else
-                    echo '<li>No user logged in</li>';
+                    echo '<li>no user logged in</li>';
                 ?>
               </ul>
             </td>
