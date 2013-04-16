@@ -7,6 +7,7 @@ use lib\CPU;
 use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
+use lib\Users;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -20,6 +21,7 @@ for ($i=0; $i<sizeof($hdd); $i++) {
     $hdd_alert = 'warning';
 }
 $network = Network::connections();
+$users = sizeof(Users::connected());
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -79,6 +81,7 @@ function icon_alert($alert) {
             <div>
               <i class="icon-globe"></i> Network <a href="<?php echo DETAILS; ?>#check-network"><?php echo icon_alert($network['alert']); ?></a>
             </div>
+            <div class="icon-user"></i> Users <a href="<?php echo DETAILS; ?>#check-users"><span class="badge"><?php echo $users; ?></span></a>
           </div>
         </div>
 

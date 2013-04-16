@@ -7,6 +7,7 @@ use lib\CPU;
 use lib\Storage;
 use lib\Network;
 use lib\Rbpi;
+use lib\Users;
 
 $uptime = Uptime::uptime();
 $ram = Memory::ram();
@@ -16,6 +17,7 @@ $cpu_heat = CPU::heat();
 $hdd = Storage::hdd();
 $net_connections = Network::connections();
 $net_eth = Network::ethernet();
+$users = Users::connected();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -120,6 +122,17 @@ function icon_alert($alert) {
               IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
               <br />received: <strong><?php echo $net_eth['down']; ?>Mb</strong> &middot; sent: <strong><?php echo $net_eth['up']; ?>Mb</strong> &middot; total: <?php echo $net_eth['total']; ?>Mb
               <br />connections: <?php echo $net_connections['connections']; ?>
+            </td>
+          </tr>
+
+          <tr id="check-users">
+            <td class="check"><i class="icon-user"></i> Active users</td>
+            <td class="icon"><span class="badge"><?php echo sizeof($users); ?></span></td>
+            <td class="infos">
+              <?php
+                for ($i=0; $i<sizeof($users); $i++) 
+                  echo '<span class="text-info">', $users[$i]['user'] ,'</span> since ', $users[$i]['date'], 'at', $users[$i]['hour'], ' from <strong>', $users[$i]['ip'] ,'</strong> ', $users[$i]['dns'], ($i == sizeof($users)-1) ? null : '<br /><br />';
+              ?>
             </td>
           </tr>
 
