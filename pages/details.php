@@ -14,7 +14,8 @@ $swap = Memory::swap();
 $cpu = CPU::cpu();
 $cpu_heat = CPU::heat();
 $hdd = Storage::hdd();
-$network = Network::connections();
+$net_connections = Network::connections();
+$net_eth = Network::ethernet();
 
 function icon_alert($alert) {
   echo '<i class="icon-';
@@ -114,10 +115,11 @@ function icon_alert($alert) {
 
           <tr id="check-network">
             <td class="check"><i class="icon-globe"></i> Network</td>
-            <td class="icon"><?php echo icon_alert($network['alert']); ?></td>
+            <td class="icon"><?php echo icon_alert($net_connections['alert']); ?></td>
             <td class="infos">
               IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
-              <br />connections: <?php echo $network['connections']; ?>
+              <br />received: <?php echo $net_eth['down']; ?>Mb &middot; sent: <?php echo $net_eth['up']; ?>Mb &middot; total: <?php echo $net_eth['total']; ?>Mb
+              <br />connections: <?php echo $net_connections['connections']; ?>
             </td>
           </tr>
 
