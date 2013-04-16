@@ -3,6 +3,9 @@
 This a modified version of the excellent [Raspcontrol](//github.com/Bioshox/Raspcontrol) from [Bioshox](//github.com/Bioshox).
 
 
+![Home of Raspcontrol](raspcontrol-home.png)
+
+
 This guide works with an apache server.
 
 ***
