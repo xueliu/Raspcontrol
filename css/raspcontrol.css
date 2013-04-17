@@ -144,7 +144,7 @@ footer a:hover {
 /*
  * Mediaqueries
  */
-@media (max-width: 650px) {
+@media (max-width: 770px) {
   body {
     margin: 0;
     padding: 0;
