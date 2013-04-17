@@ -1,3 +1,7 @@
+# Security rules
+Options -Indexes
+
+# URL rewriting rules
 RewriteEngine On
 RewriteRule ^details$ index.php?page=details
 RewriteRule ^logout$ login.php?logout
