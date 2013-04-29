@@ -1,7 +1,6 @@
 # Raspcontrol
 
-This a modified version of the excellent [Raspcontrol](//github.com/Bioshox/Raspcontrol) from [Bioshox](//github.com/Bioshox).
-
+Lots of merges from many different people! See the commit history for everybodies hard work. ~ Jacob.
 
 ![Home of Raspcontrol](raspcontrol-home.png)
 
@@ -14,13 +13,8 @@ This guide works with an apache server.
 
 ### Source
 
-You can download this as a _.zip_ from the Github repository via the following link: 
-
-	https://github.com/nicolabricot/Raspcontrol/zipball/master
-
-If you have Git installed you can also clone the repo
-
-	git clone https://github.com/nicolabricot/Raspcontrol.git
+Clone the repo
+	git clone https://github.com/bioshox/Raspcontrol.git
 	
 When done, just put the files where your web server folder is installed
 
@@ -41,5 +35,5 @@ To get some statistics, we need to have some rigth. Adding `www-data` to the `vi
 	
 ### Drink coffee
 
-That's all! You're ready to show the status of your raspberry pi :)
+That's all! You're ready to show the status of your Raspberry Pi :)
 	

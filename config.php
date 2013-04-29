@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 define('INDEX', './');
 define('LOGIN', 'login.php');
 define('LOGOUT', './logout');
