@@ -8,7 +8,7 @@ class Storage {
 
     $result = array();
 
-    exec('df -hT | grep -vE "tmpfs|rootfs|Filesystem"', $drivesarray);
+    exec('df -T | grep -vE "tmpfs|rootfs|Filesystem"', $drivesarray);
     
     for ($i=0; $i<count($drivesarray); $i++) {
       $drivesarray[$i] = preg_replace('!\s+!', ' ', $drivesarray[$i]);
@@ -32,7 +32,7 @@ class Storage {
     return $result;
   }
   
-  private static function kConv($kSize){
+  public static function kConv($kSize){
     $unit = array('K', 'M', 'G', 'T');
     $i = 0;
     $size = $kSize;
