@@ -40,7 +40,7 @@ class Storage {
       $i++;
       $size = $size / 1024;
     }
-    return $size.$unit[$i];
+    return rount($size, 2).$unit[$i];
   }
 
 }
