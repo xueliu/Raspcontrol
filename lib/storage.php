@@ -31,6 +31,17 @@ class Storage {
 
     return $result;
   }
+  
+  private static function kConv($kSize){
+    $unit = array('K', 'M', 'G', 'T');
+    $i = 0;
+    $size = $kSize;
+    while($i < 3 && $size > 1024){
+      $i++;
+      $size = $size / 1024;
+    }
+    return $size.$unit[$i];
+  }
 
 }
 
