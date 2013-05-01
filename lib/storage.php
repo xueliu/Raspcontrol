@@ -16,9 +16,9 @@ class Storage {
       list($fs, $type, $size, $used, $available, $percentage, $mounted) = $drivedetails[0];
         
       $result[$i]['name'] = $mounted;
-      $result[$i]['total'] = $size;
-      $result[$i]['free'] = $available;
-      $result[$i]['used'] = ($size - $available) . substr($size, -1);
+      $result[$i]['total'] = self::kConv($size);
+      $result[$i]['free'] = self::kConv($available);
+      $result[$i]['used'] = self::kConv($size - $available);
       $result[$i]['format'] = $type;
       
       $result[$i]['percentage'] = rtrim($percentage, '%');
