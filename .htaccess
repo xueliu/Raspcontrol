@@ -1,7 +1,16 @@
+# To enable URL rewriting, please uncomment the following lines on the URL rewriting section
+# 
+# If you are running Apache:
+#  – ensure you have modified the 'config.php' file
+#  - ensure that the rewrite module is enabled (if not, enable it with the command 'a2enmod rewrite')
+#  - ensure your vhost configuration file has the line 'AllowOverride All'
+# 
+# If you are running Nginx, you have not to change this file but your location file as described on https://github.com/nicolabricot/Raspcontrol/issues/4
+
 # Security rules
 Options -Indexes
 
-# URL rewriting rules
-RewriteEngine On
-RewriteRule ^details$ index.php?page=details
-RewriteRule ^logout$ login.php?logout
+# URL rewriting (uncomment = remove the # on the 3 following lines)
+#RewriteEngine On
+#RewriteRule ^details$ index.php?page=details
+#RewriteRule ^logout$ login.php?logout
