@@ -7,7 +7,7 @@ Love Raspcontrol? Considering donating, I'm saving up for University! - https://
 ![Home of Raspcontrol](raspcontrol-home.png)
 
 
-Lots of merges from many different people! See the commit history for everybodies hard work. ~ Jacob.
+Love Raspcontrol? The origional author (@imjacobclark)[http://www.twitter.com.com/imjacobclark/] is saving up to study Computer Science at University, help him out? https://www.gittip.com/Bioshox/
 
 ***
 
