@@ -2,7 +2,7 @@
 
 Raspcontrol is a web control centre written in PHP for Raspberry Pi.
 
-Love Raspcontrol? The origional author [@imjacobclark](http://www.twitter.com.com/imjacobclark/) is saving up to study Computer Science at University, help him out? https://www.gittip.com/Bioshox/
+Love Raspcontrol? The origional author [@imjacobclark](http://twitter.com/imjacobclark/) is saving up to study Computer Science at University, help him out? https://www.gittip.com/Bioshox/
 
 ![Home of Raspcontrol](raspcontrol-home.png)
 
