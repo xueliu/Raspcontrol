@@ -2,6 +2,8 @@
 
 Raspcontrol is a web control centre written in PHP for Raspberry Pi.
 
+Love Raspcontrol? Considering donating, I'm saving up for University! - https://www.gittip.com/Bioshox/
+
 ![Home of Raspcontrol](raspcontrol-home.png)
 
 
