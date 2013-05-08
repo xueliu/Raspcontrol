@@ -3,12 +3,8 @@
 /*
  * To enable URL rewriting, please set the $rewriting variable on 'true'
  *
- * If you are running Apache:
- * - ensure that the rewrite module is enabled (if not, enable it with the command 'a2enmod rewrite')
- * - ensure your vhost configuration file has the line 'AllowOverride All'
- * - ensure you have uncommented lines on the .htaccess file
- *
- * If you are running Nginx, you have to add some rules as described on https://github.com/nicolabricot/Raspcontrol/issues/4
+ * Ensure you have done every other steps described on
+ * https://github.com/Bioshox/Raspcontrol/wiki/Enable-URL-Rewriting#configure-your-web-server
  */
 $rewriting = false;
 
