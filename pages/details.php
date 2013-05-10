@@ -90,11 +90,13 @@ function shell_to_html_table_result($shellExecOutput) {
             <td class="check"><i class="icon-asterisk"></i> RAM</td>
             <td class="icon"><?php echo icon_alert($ram['alert']); ?></td>
             <td class="infos">
-			<div class="progress" id="popover-ram" data-content="<?php echo shell_to_html_table_result($ram['detail']); ?>" rel="popover" data-placement="bottom" data-original-title="Top ram eaters" data-trigger="hover">
+			<div class="progress" id="popover-ram">
                 <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
-              </div>
+            </div>
+			<div id="popover-ram-head" class="hide">Top RAM eaters</div>
+			<div id="popover-ram-body" class="hide"><?php echo shell_to_html_table_result($ram['detail']); ?></div>
               free: <span class="text-success"><?php echo $ram['free']; ?>Mb</span>  &middot; used: <span class="text-warning"><?php echo $ram['used']; ?>Mb</span> &middot; total: <?php echo $ram['total']; ?>Mb
-            </td>
+			</td>
           </tr>
 
           <tr id="check-swap">
@@ -122,9 +124,11 @@ function shell_to_html_table_result($shellExecOutput) {
             <td class="check"><i class="icon-fire"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
             <td class="infos">
-			<div class="progress" id="popover-cpu" data-content="<?php echo shell_to_html_table_result($cpu_heat['detail']); ?>" rel="popover" data-placement="bottom" data-original-title="Top CPU eaters" data-trigger="hover">
+			<div class="progress" id="popover-cpu">
                 <div class="bar bar-<?php echo $cpu_heat['alert']; ?>" style="width: <?php echo $cpu_heat['percentage']; ?>%;"><?php echo $cpu_heat['percentage']; ?>%</div>
-              </div>
+            </div>
+			<div id="popover-cpu-head" class="hide">Top CPU eaters</div>
+			<div id="popover-cpu-body" class="hide"><?php echo shell_to_html_table_result($cpu_heat['detail']); ?></div>
               heat: <span class="text-info"><?php echo $cpu_heat['degrees']; ?>°C</span>
             </td>
           </tr>
