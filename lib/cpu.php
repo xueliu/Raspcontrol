@@ -3,7 +3,7 @@
 namespace lib;
 
 class CPU {
-  
+
   public static function cpu() {
 
     $result = array();
@@ -18,7 +18,7 @@ class CPU {
       $result['alert'] = 'danger';
     else
       $result['alert'] = 'success';
-      
+
     $result['loads'] = $getLoad[0];
     $result['loads5'] = $getLoad[1];
     $result['loads15'] = $getLoad[2];
@@ -40,17 +40,21 @@ class CPU {
     $currenttemp = fgets($fh);
     fclose($fh);
 
-    $result['degrees'] = round($currenttemp / 1000);
+	$cpuDetails = shell_exec('ps -e -o pcpu,user,args --sort=-pcpu | sed "/^ 0.0 /d" | head -5');
+
+	$result['degrees'] = round($currenttemp / 1000);
     $result['percentage'] = round($result['degrees'] / self::$MaxTemp * 100);
-    
-    if ($result['percentage'] >= '80')
+
+	if ($result['percentage'] >= '80')
       $result['alert'] = 'danger';
     elseif ($result['percentage'] >= '60')
       $result['alert'] = 'warning';
     else
       $result['alert'] = 'success';
 
-    return $result;
+	$result['detail'] = $cpuDetails;
+
+	return $result;
   }
 
 }

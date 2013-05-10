@@ -88,7 +88,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
         </div>
       </div>
       <?php unset($_SESSION['message']); } ?>
-      
+
 <?php
   include $page;
 ?>
@@ -103,6 +103,12 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
     </footer>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<?php
+		// load specific scripts
+		if ('details' === $_GET['page']) {
+			echo '   <script src="js/details.js"></script>';
+		}
+	?>
   </body>
 </html>
