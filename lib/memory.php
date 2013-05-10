@@ -4,6 +4,12 @@ namespace lib;
 
 class Memory {
 
+  /**
+   * The number of line which will be shown in the popover
+   */
+  public static $DETAIL_LINE_COUNT = 5;
+
+
   public static function ram() {
 
 		$result = array();
@@ -12,7 +18,7 @@ class Memory {
 		preg_match_all('/\s+([0-9]+)/', $out[1], $matches);
 		list($total, $used, $free, $shared, $buffers, $cached) = $matches[1];
 
-		$ramDetails = shell_exec('ps -e -o pmem,user,args --sort=-pmem | sed "/^ 0.0 /d" | head -5');
+		$ramDetails = shell_exec('ps -e -o pmem,user,args --sort=-pmem | sed "/^ 0.0 /d" | head -' . self::$DETAIL_LINE_COUNT);
 
 		$result['percentage'] = round(($used - $buffers - $cached) / $total * 100);
 		if ($result['percentage'] >= '80')

@@ -4,6 +4,12 @@ namespace lib;
 
 class CPU {
 
+  /**
+   * The number of line which will be shown in the popover
+   */
+  public static $DETAIL_LINE_COUNT = 5;
+
+
   public static function cpu() {
 
     $result = array();
@@ -40,7 +46,7 @@ class CPU {
     $currenttemp = fgets($fh);
     fclose($fh);
 
-	$cpuDetails = shell_exec('ps -e -o pcpu,user,args --sort=-pcpu | sed "/^ 0.0 /d" | head -5');
+	$cpuDetails = shell_exec('ps -e -o pcpu,user,args --sort=-pcpu | sed "/^ 0.0 /d" | head -' . self::$DETAIL_LINE_COUNT);
 
 	$result['degrees'] = round($currenttemp / 1000);
     $result['percentage'] = round($result['degrees'] / self::$MaxTemp * 100);
