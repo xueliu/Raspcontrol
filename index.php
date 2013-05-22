@@ -13,8 +13,8 @@ require 'config.php';
 if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
   if (empty($_GET['page'])) $_GET['page'] = 'home';
   $_GET['page'] = htmlspecialchars($_GET['page']);
-  str_replace("\0", '', $_GET['page']);
-  str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
+  $_GET['page'] = str_replace("\0", '', $_GET['page']);
+  $_GET['page'] = str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
   $display = true;
   function is_active($page) {
     if ($page == $_GET['page'])
