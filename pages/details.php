@@ -64,6 +64,13 @@ function shell_to_html_table_result($shellExecOutput) {
 			. '</table>';
 }
 
+function external_ip(){
+    $ip_json = trim(file_get_contents("http://pv.sohu.com/cityjson?ie=utf-8"));
+    $ip_json = substr($ip_json, 19);
+    $ip_json = substr($ip_json, 0, -1);
+    $ip_arr = json_decode($ip_json,true);
+    return $ip_arr['cip'];
+}
 
 ?>
       <div class="container details">
@@ -155,6 +162,7 @@ function shell_to_html_table_result($shellExecOutput) {
             <td class="icon"><?php echo icon_alert($net_connections['alert']); ?></td>
             <td class="infos">
               IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
+              <span class="text-info"><?php echo external_ip(); ?></span> [external]
               <br />received: <strong><?php echo $net_eth['down']; ?>Mb</strong> &middot; sent: <strong><?php echo $net_eth['up']; ?>Mb</strong> &middot; total: <?php echo $net_eth['total']; ?>Mb
               <br />connections: <?php echo $net_connections['connections']; ?>
             </td>
