@@ -46,7 +46,8 @@ function icon_alert($alert) {
             <i class="icon-home"></i> <?php echo Rbpi::hostname(); ?>
           </div>
           <div class="span4">
-            <i class="icon-map-marker"></i> <?php echo Rbpi::ip(); ?>
+            <i class="icon-map-marker"></i> <?php echo Rbpi::internalIp(); ?>(Internal)
+            <br/> <i class="icon-map-marker"></i> <?php echo Rbpi::externalIp(); ?>(External)
           </div>
           <div class="span4">
             <i class="icon-play-circle"></i> Server <?php echo Rbpi::webServer(); ?>
