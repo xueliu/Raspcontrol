@@ -23,6 +23,8 @@ for ($i=0; $i<sizeof($hdd); $i++) {
 $network = Network::connections();
 $users = sizeof(Users::connected());
 
+$external_ip = Rbpi::externalIp();
+
 function icon_alert($alert) {
   echo '<i class="icon-';
   switch($alert) {
@@ -46,8 +48,8 @@ function icon_alert($alert) {
             <i class="icon-home"></i> <?php echo Rbpi::hostname(); ?>
           </div>
           <div class="span4">
-            <i class="icon-map-marker"></i> <?php echo Rbpi::internalIp(); ?>(Internal)
-            <br/> <i class="icon-map-marker"></i> <?php echo Rbpi::externalIp(); ?>(External)
+            <i class="icon-map-marker"></i> <?php echo Rbpi::internalIp(); ?>
+            <?php echo ($external_ip != 'Unavailable') ? '<br /><i class="icon-globe"></i> '. $external_ip : '' ; ?>
           </div>
           <div class="span4">
             <i class="icon-play-circle"></i> Server <?php echo Rbpi::webServer(); ?>
