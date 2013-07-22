@@ -1,39 +1,33 @@
 # Raspcontrol
 
-Lots of merges from many different people! See the commit history for everybodies hard work. ~ Jacob.
+Raspcontrol is a web control centre written in PHP for Raspberry Pi.
 
 ![Home of Raspcontrol](raspcontrol-home.png)
 
-
-This guide works with an apache server.
-
 ***
+
 
 ## Installation
 
-### Source
+__The [Installation Guide](https://github.com/Bioshox/Raspcontrol/wiki/Installation-Guide) in now hosted on the wiki.__  
+For the moment, you need a web server (like Apache) installed on your Raspberry Pi.
 
-Clone the repo
-	git clone https://github.com/bioshox/Raspcontrol.git
-	
-When done, just put the files where your web server folder is installed
 
-### Authentification file
+If you are in a hurry, just clone the repository with:
 
-You have to create a json format file in `/etc/raspcontrol` named `database.aptmnt`, for instance with `nano /etc/raspcontrol/database.aptmnt`, which contains:
-	
+	git clone https://github.com/Bioshox/Raspcontrol.git raspcontrol
+
+And create the json authentifation file `/etc/raspcontrol/database.aptmnt` with 777 rights:
+
 	{
-		"user":       "yourName",
-		"password":   "yourPassword"
+ 	   "user":       "yourName",
+ 	   "password":   "yourPassword"
 	}
 
-### Statictics access
+## Optional configuration
 
-To get some statistics, we need to have some rigth. Adding `www-data` to the `video` group is a safe way. You can do that by executing the following command :
+In order to have some beautiful URLs, you can enable URL Rewriting.  
+Please follow instructions described on the wiki page [Enable URL Rewriting](https://github.com/Bioshox/Raspcontrol/wiki/Enable-URL-Rewriting).
 
-	usermod -a -G video www-data
-	
-### Drink coffee
+__Note:__ It's not necessary to enable URL Rewriting to use Raspcontrol.
 
-That's all! You're ready to show the status of your Raspberry Pi :)
-	

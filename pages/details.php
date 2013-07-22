@@ -34,10 +34,41 @@ function icon_alert($alert) {
   echo '"></i>';
 }
 
-?>
+function shell_to_html_table_result($shellExecOutput) {
+	$shellExecOutput = preg_split('/[\r\n]+/', $shellExecOutput);
 
+	// remove double (or more) spaces for all items
+	foreach ($shellExecOutput as &$item) {
+		$item = preg_replace('/[[:blank:]]+/', ' ', $item);
+		$item = trim($item);
+	}
+
+	// remove empty lines
+	$shellExecOutput = array_filter($shellExecOutput);
+
+	// the first line contains titles
+	$columnCount = preg_match_all('/\s+/', $shellExecOutput[0]);
+	$shellExecOutput[0] = '<tr><th>' . preg_replace('/\s+/', '</th><th>', $shellExecOutput[0], $columnCount) . '</th></tr>';
+	$tableHead = $shellExecOutput[0];
+	unset($shellExecOutput[0]);
+
+	// others lines contains table lines
+	foreach ($shellExecOutput as &$item) {
+		$item = '<tr><td>' . preg_replace('/\s+/', '</td><td>', $item, $columnCount) . '</td></tr>';
+	}
+
+	// return the build table
+	return '<table class=\'table table-striped\'>'
+				. '<thead>' . $tableHead . '</thead>'
+				. '<tbody>' . implode($shellExecOutput) . '</tbody>'
+			. '</table>';
+}
+
+
+?>
       <div class="container details">
-        <table>
+
+		<table>
           <tr id="check-system">
             <td class="check"><i class="icon-cog"></i> System</td>
             <td class="icon"></td>
@@ -54,18 +85,20 @@ function icon_alert($alert) {
             <td class="icon"></td>
             <td class="infos"><?php echo $uptime; ?></td>
           </tr>
-          
+
           <tr id="check-ram">
             <td class="check"><i class="icon-asterisk"></i> RAM</td>
             <td class="icon"><?php echo icon_alert($ram['alert']); ?></td>
             <td class="infos">
-              <div class="progress">
+			<div class="progress" id="popover-ram">
                 <div class="bar bar-<?php echo $ram['alert']; ?>" style="width: <?php echo $ram['percentage']; ?>%;"><?php echo $ram['percentage']; ?>%</div>
-              </div>
+            </div>
+			<div id="popover-ram-head" class="hide">Top RAM eaters</div>
+			<div id="popover-ram-body" class="hide"><?php echo shell_to_html_table_result($ram['detail']); ?></div>
               free: <span class="text-success"><?php echo $ram['free']; ?>Mb</span>  &middot; used: <span class="text-warning"><?php echo $ram['used']; ?>Mb</span> &middot; total: <?php echo $ram['total']; ?>Mb
-            </td>
+			</td>
           </tr>
-          
+
           <tr id="check-swap">
             <td class="check"><i class="icon-refresh"></i> Swap</td>
             <td class="icon"><?php echo icon_alert($swap['alert']); ?></td>
@@ -91,9 +124,11 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-fire"></i> CPU</td>
             <td class="icon"><?php echo icon_alert($cpu_heat['alert']); ?></td>
             <td class="infos">
-              <div class="progress">
+			<div class="progress" id="popover-cpu">
                 <div class="bar bar-<?php echo $cpu_heat['alert']; ?>" style="width: <?php echo $cpu_heat['percentage']; ?>%;"><?php echo $cpu_heat['percentage']; ?>%</div>
-              </div>
+            </div>
+			<div id="popover-cpu-head" class="hide">Top CPU eaters</div>
+			<div id="popover-cpu-body" class="hide"><?php echo shell_to_html_table_result($cpu_heat['detail']); ?></div>
               heat: <span class="text-info"><?php echo $cpu_heat['degrees']; ?>°C</span>
             </td>
           </tr>
@@ -119,7 +154,8 @@ function icon_alert($alert) {
             <td class="check"><i class="icon-globe"></i> Network</td>
             <td class="icon"><?php echo icon_alert($net_connections['alert']); ?></td>
             <td class="infos">
-              IP: <span class="text-info"><?php echo Rbpi::ip(); ?></span> [internal]
+              IP: <span class="text-info"><?php echo Rbpi::internalIp(); ?></span> [internal] &middot;
+              <span class="text-info"><?php echo Rbpi::externalIp(); ?></span> [external]
               <br />received: <strong><?php echo $net_eth['down']; ?>Mb</strong> &middot; sent: <strong><?php echo $net_eth['up']; ?>Mb</strong> &middot; total: <?php echo $net_eth['total']; ?>Mb
               <br />connections: <?php echo $net_connections['connections']; ?>
             </td>
@@ -132,7 +168,7 @@ function icon_alert($alert) {
               <ul class="unstyled">
                 <?php
                   if (sizeof($users) > 0) {
-                    for ($i=0; $i<sizeof($users); $i++) 
+                    for ($i=0; $i<sizeof($users); $i++)
                       echo '<li><span class="text-info">', $users[$i]['user'] ,'</span> since ', $users[$i]['date'], ' at ', $users[$i]['hour'], ' from <strong>', $users[$i]['ip'] ,'</strong> ', $users[$i]['dns'], '</li>', "\n";
                   }
                   else

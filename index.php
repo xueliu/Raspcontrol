@@ -13,8 +13,8 @@ require 'config.php';
 if (isset($_SESSION['authentificated']) && $_SESSION['authentificated']) {
   if (empty($_GET['page'])) $_GET['page'] = 'home';
   $_GET['page'] = htmlspecialchars($_GET['page']);
-  str_replace("\0", '', $_GET['page']);
-  str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
+  $_GET['page'] = str_replace("\0", '', $_GET['page']);
+  $_GET['page'] = str_replace(DIRECTORY_SEPARATOR, '', $_GET['page']);
   $display = true;
   function is_active($page) {
     if ($page == $_GET['page'])
@@ -88,7 +88,7 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
         </div>
       </div>
       <?php unset($_SESSION['message']); } ?>
-      
+
 <?php
   include $page;
 ?>
@@ -102,7 +102,13 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
       </div>
     </footer>
 
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<?php
+		// load specific scripts
+		if ('details' === $_GET['page']) {
+			echo '   <script src="js/details.js"></script>';
+		}
+	?>
   </body>
 </html>
