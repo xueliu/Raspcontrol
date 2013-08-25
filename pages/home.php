@@ -59,12 +59,15 @@ function icon_alert($alert) {
         </div>
 
         <div class="infos">
-          <div>
-            <a href="<?php echo DETAILS; ?>#check-uptime"><i class="icon-time"></i></a> <?php echo $uptime; ?>
-          </div>
-        </div>
+          <div style="float:left">
+            <a href="<?php echo DETAILS; ?>#check-uptime"><i class="icon-time"></i></a> <?php echo $uptime; ?>			
+          </div>		
+		  <div style="float:right"><?php echo ($rootpermission == "true" ? '<i class="icon-ok"></i>  Raspcontrol has root permission' : '<i class="icon-remove"></i>  Raspcontrol hasn\'t root permission'); ?> <a href="?forcerootpermissioncheck" title="Force check"><i class="icon-refresh"></i></a> <i id="popover-rootpermissioninfo" class="icon-question-sign"></i></div>
+		  <div id="popover-rootpermissioninfo-head" class="hide">Root permission</div>
+		  <div id="popover-rootpermissioninfo-body" class="hide">Give root permission to www-data allows you to performs these action<br>Shutdown/reboot your Raspberry Pi<br>Start/stop services<br>Mount/unmount partitions<br><br><i class="icon-warning-sign"></i> Security risk <i class="icon-warning-sign"></i><br>Give root permission to www-data could rapresent a security problem, mainly if your raspberry is publicly accessible.<br><br>If you considered the risks of doing this and still want to proceed, add this line to /etc/sudoers and reboot<br><br><pre>www-data ALL=(ALL) NOPASSWD: ALL</pre></div>		 
+		</div>		
 
-        <div class="row-fluid">
+        <div class="row-fluid" style="float:left">
           <div class="span4 rapid-status">
             <div>
               <i class="icon-asterisk"></i> RAM <a href="<?php echo DETAILS; ?>#check-ram"><?php echo icon_alert($ram['alert']); ?></a>

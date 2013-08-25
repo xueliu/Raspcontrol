@@ -29,6 +29,40 @@ else {
 $page = 'pages'. DIRECTORY_SEPARATOR.$_GET['page']. '.php';
 $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 
+$rootpermission;
+
+if (!isset($_COOKIE['rootpermission']) || isset($_GET['forcerootpermissioncheck'])) {
+	$rootpermission = shell_exec('sudo grep "www-data" /etc/sudoers');
+
+	if ($rootpermission != null && $rootpermission != "")
+	{
+		setcookie("rootpermission", "true", time()+3600);
+		$rootpermission = "true";
+	}
+	else
+	{
+		setcookie("rootpermission", "false", time()+3600);
+		$rootpermission = "false";
+	}	
+}
+else if (isset($_COOKIE['rootpermission']))
+{
+	$rootpermission = $_COOKIE['rootpermission'];
+}
+
+if (isset($_GET['action']) && $rootpermission == "true")
+{
+	$action = $_GET['action'];
+	if ($action == 'reboot')
+	{		
+		shell_exec("sudo /sbin/shutdown -r now");
+	}
+	else if ($action == 'shutdown')
+	{
+		shell_exec("sudo /sbin/shutdown -h now");
+	}
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,10 +85,11 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
       <div class="container">
         <a href="<?php echo INDEX; ?>"><img src="img/raspcontrol.png" alt="rbpi" /></a>
         <h1><a href="<?php echo INDEX; ?>">Raspcontrol</a></h1>
-        <h2>The Raspberry Pi Control Center</h2>
-      </div>
+        <h2>The Raspberry Pi Control Center</h2>		
+      </div>	 
     </header>
-
+	<div id="popover-requirerootpermission-head" class="hide">Root permission</div>
+	<div id="popover-requirerootpermission-body" class="hide">To perform this action Raspcontrol must have root permission</div>		
     <?php if ($display) : ?>
 
     <div class="navbar navbar-static-top navbar-inverse">
@@ -73,7 +108,9 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 				<li<?php is_active('disks'); ?>><a href="<?php echo DISKS; ?>"><i class="icon-disks icon-white"></i> Disks</a></li>
 			  </ul>
 			  <ul class="nav pull-right">
-				<li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>
+				<li><a href="<?php echo LOGOUT; ?>"><i class="icon-off icon-white"></i> Logout</a></li>	
+				<li><a <?php echo ($rootpermission == "true" ? 'href="' . REBOOT . '"' : 'class="popover-requirerootpermission" href="#"'); ?>><i class="icon-repeat icon-white"></i> Reboot</a></li>
+				<li><a <?php echo ($rootpermission == "true" ? 'href="' . SHUTDOWN . '"' : 'class="popover-requirerootpermission" href="#"'); ?>><i class="icon-stop icon-white"></i> Shutdown</a></li>			 
 			  </ul>
           </div>
         </div>
@@ -111,6 +148,33 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 		if ('details' === $_GET['page']) {
 			echo '   <script src="js/details.js"></script>';
 		}
+		else if ('home' === $_GET['page'])
+		{
+			echo '   <script src="js/home.js"></script>';
+		}		
+		else if ('services' === $_GET['page'])
+		{
+			echo '   <script src="js/services.js"></script>';
+		}
+		else if ('disks' === $_GET['page'])
+		{
+			echo '   <script src="js/disks.js"></script>';
+		}				
 	?>
+	
+	<!-- General scripts -->
+	<script>
+	$('.popover-requirerootpermission').popover({
+	html : true,
+	placement : 'bottom',
+	trigger : 'hover',
+	title : function() {
+		return $("#popover-requirerootpermission-head").html();
+	},
+	content : function() {
+		return $("#popover-requirerootpermission-body").html();
+	}
+	});
+	</script>
   </body>
 </html>

@@ -10,7 +10,7 @@ body {
   padding: 40px 20px;
 }
 .container, .navbar .container {
-  max-width: 650px;
+  max-width: 700px;
 }
 
 
@@ -196,4 +196,15 @@ footer a:hover {
 }
 .popover-content table {
 	margin-bottom: 0px;
+}
+
+
+pre {
+background-color: #f8f8f8;
+border: 1px solid #ddd;
+font-size: 13px;
+line-height: 19px;
+overflow: auto;
+padding: 6px 10px;
+border-radius: 3px;
 }

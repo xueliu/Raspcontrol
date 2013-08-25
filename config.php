@@ -21,12 +21,16 @@ if ($rewriting) {
   define('DETAILS', './details');
   define('SERVICES', './services');
   define('DISKS', './disks');
+  define('REBOOT', './reboot');
+  define('SHUTDOWN', './shutdown');
 }
 else {
   define('LOGOUT', './login.php?logout');
   define('DETAILS', './?page=details');
   define('SERVICES', './?page=services');
   define('DISKS', './?page=disks');
+  define('REBOOT', './?action=reboot');
+  define('SHUTDOWN', './?action=shutdown');
 }
 
 ?>

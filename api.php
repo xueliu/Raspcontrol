@@ -25,7 +25,7 @@
  *         hdd        Return the hdd informations (array of disks).
  *         net        Return the net informations (number of connections, up & down).
  *         users      Return the array of ssh active users.
- *         temp       Return the current temperature
+ *         temp       Return the current temperature (DS18B20 sensor, cpu heat)
  *         services   Return the services with their status.
  */
  
@@ -44,6 +44,7 @@ spl_autoload_extensions('.php');
 spl_autoload_register();
 
 require 'config.php';
+require 'lib/password.php';
 
 function build_rbpi($response){
   $response['rbpi']['hostname'] = Rbpi::hostname(true);
@@ -83,6 +84,7 @@ function build_users($response){
 }
 function build_temp($response){
   $response['temp'] = Temp::temp();
+  $response['cpu']['heat'] = CPU::heat();
   return $response;
 }
 function build_services($response){
@@ -97,7 +99,7 @@ try {
   $username = $db->{'user'};
   $password = $db->{'password'};
   
-  if (!empty($_GET['username']) && !empty($_GET['password']) && $_GET['username'] == $username && $_GET['password'] == $password){
+  if (!empty($_GET['username']) && !empty($_GET['password']) && $_GET['username'] == $username && password_verify($_GET['password'], $password)){
     //Login is ok, building full api response
     if(!empty($_GET['data'])){
       switch($_GET['data']){
