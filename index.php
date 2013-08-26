@@ -32,8 +32,8 @@ $page = file_exists($page) ? $page : 'pages'. DIRECTORY_SEPARATOR .'404.php';
 $rootpermission;
 
 if (!isset($_COOKIE['rootpermission']) || isset($_GET['forcerootpermissioncheck'])) {
-	$rootpermission = shell_exec('sudo grep "www-data" /etc/sudoers');
-
+	$rootpermission = exec('/usr/bin/sudo -ln');
+	
 	if ($rootpermission != null && $rootpermission != "")
 	{
 		setcookie("rootpermission", "true", time()+3600);
