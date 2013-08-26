@@ -36,12 +36,13 @@ if (isset($_GET['changepartitionstatus'])  && $rootpermission == "true")
 			{
 				if (isset($_GET['mountpoint']))
 				{
-					shell_exec("sudo mount /dev/" . $disks[$i]['name'] . " " . $_GET['mountpoint']);
+					shell_exec("sudo mount /dev/" . $disks[$i]['name'] . " '" . str_replace("%20", " ", $_GET['mountpoint']) . "'");
+		
 				}				
 			}
 			else
 			{
-				shell_exec("sudo umount /dev/" . $disks[$i]['name'] . "");
+				shell_exec("sudo umount /dev/" .  $disks[$i]['name']);
 			}
 			
 			header("location: ?page=disks");
@@ -60,7 +61,7 @@ if (isset($_GET['changepartitionstatus'])  && $rootpermission == "true")
         for ($i = 0; $i < sizeof($disks); $i++) {
 		  if ($disks[$i]["type"] != "disk")
 		  {
-			 if (strpos($disks[$i]['name'], "sda") !== false){
+			 if (strpos($disks[$i]['name'], "sda") !== false){			
 				echo '<td class="icon" style="padding-left: 10px;">';
 				echo $rootpermission == "true" ? '<a onClick="changepartitionstatus(\''. $disks[$i]['name'] . '\', \''. $disks[$i]['mountpoint'] . '\')" href="#">' : '<a class="popover-requirerootpermission-disks" href="#">';
 				echo label_partition($disks[$i]['mountpoint']), '</a></td>';
