@@ -3,12 +3,13 @@
 namespace lib;
 
 class Services{
-
+	
 	public static function services() {
-    
+    global $ssh;
+	
     $result = array();
     
-    exec('/usr/sbin/service --status-all', $servicesArray);
+    $servicesArray = $ssh->exec_noauth('/usr/sbin/service --status-all');
     
     for ($i = 0; $i < count($servicesArray); $i++) {
       $servicesArray[$i] = preg_replace('!\s+!', ' ', $servicesArray[$i]);

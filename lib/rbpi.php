@@ -5,7 +5,8 @@ namespace lib;
 class Rbpi {
   
   public static function distribution() {
-    $distroTypeRaw = exec("cat /etc/*-release | grep PRETTY_NAME=", $out);
+    global $ssh;
+    $distroTypeRaw = $ssh->shell_exec_noauth("cat /etc/*-release | grep PRETTY_NAME=");
     $distroTypeRawEnd = str_ireplace('PRETTY_NAME="', '', $distroTypeRaw);
     $distroTypeRawEnd = str_ireplace('"', '', $distroTypeRawEnd);
 
@@ -13,18 +14,22 @@ class Rbpi {
   }
 
   public static function kernel() {
-    return exec("uname -mrs");
+    global $ssh;
+    return $ssh->shell_exec_noauth("uname -mrs");
   }
 
   public static function firmware() {
-    return exec("uname -v");
+    global $ssh;
+    return $ssh->shell_exec_noauth("uname -v");
   }
 
   public static function hostname($full = false) {
-    return $full ? exec("hostname -f") : gethostname();
+    global $ssh;
+    return $full ? $ssh->shell_exec_noauth("hostname -f") : gethostname();
   }
 
   public static function internalIp() {
+    global $ssh;
     return $_SERVER['SERVER_ADDR'];
   }
 

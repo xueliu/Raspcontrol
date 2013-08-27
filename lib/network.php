@@ -5,8 +5,8 @@ namespace lib;
 class Network {
   
   public static function connections() {
-
-    $connections = shell_exec("netstat -nta --inet | wc -l");
+    global $ssh;  
+    $connections = $ssh->shell_exec_noauth("netstat -nta --inet | wc -l");
     $connections--;
 
     return array(
@@ -16,8 +16,8 @@ class Network {
   }
 
   public static function ethernet() {
-
-  $data = shell_exec("/sbin/ifconfig eth0 | grep RX\ bytes");
+  global $ssh;  
+  $data = $ssh->shell_exec_noauth("/sbin/ifconfig eth0 | grep RX\ bytes");
   $data = str_ireplace("RX bytes:", "", $data);
   $data = str_ireplace("TX bytes:", "", $data);
   $data = trim($data);

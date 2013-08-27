@@ -2,13 +2,14 @@
 
 namespace lib;
 
-class Disks{
-
+class Disks{   
+	
 	public static function Disks() {
+    global $ssh;
+	
+    $result = array();    
     
-    $result = array();
-    
-    exec('lsblk --pairs', $disksArray);
+    $disksArray = $ssh->exec_noauth('lsblk --pairs');
     
     for ($i = 0; $i < count($disksArray); $i++) { 
 		$string = $disksArray[$i];

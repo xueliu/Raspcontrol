@@ -27,32 +27,8 @@ function label_partition($status) {
   echo '</span>';
 }
 
-if (isset($_GET['changepartitionstatus'])  && $rootpermission == "true")
-{
-	for ($i = 0; $i < sizeof($disks); $i++) {
-		if ($disks[$i]['name'] == $_GET['changepartitionstatus'])
-		{
-			if ($disks[$i]['mountpoint'] == '')
-			{
-				if (isset($_GET['mountpoint']))
-				{
-					shell_exec("sudo mount /dev/" . $disks[$i]['name'] . " '" . str_replace("%20", " ", $_GET['mountpoint']) . "'");
-		
-				}				
-			}
-			else
-			{
-				shell_exec("sudo umount /dev/" .  $disks[$i]['name']);
-			}
-			
-			header("location: ?page=disks");
-		}
-	}
-}
 ?>
-
-<div id="popover-requirerootpermission-disks-head" class="hide">Root permission</div>
-<div id="popover-requirerootpermission-disks-body" class="hide">To mount/unmount a partition Raspcontrol must have root permission</div>		
+	
 <div class="container details">
   <table>
     <tr class="disks" id="check-disks">
@@ -62,8 +38,8 @@ if (isset($_GET['changepartitionstatus'])  && $rootpermission == "true")
 		  if ($disks[$i]["type"] != "disk")
 		  {
 			 if (strpos($disks[$i]['name'], "sda") !== false){			
-				echo '<td class="icon" style="padding-left: 10px;">';
-				echo $rootpermission == "true" ? '<a onClick="changepartitionstatus(\''. $disks[$i]['name'] . '\', \''. $disks[$i]['mountpoint'] . '\')" href="#">' : '<a class="popover-requirerootpermission-disks" href="#">';
+				echo '<td class="icon" style="padding-left: 10px;">';				
+				echo '<a data-rootaction="changepartitionstatus" data-partition-name="' .  $disks[$i]["name"] . '" data-curr-mountpoint="' .  $disks[$i]["mountpoint"] . '" class="rootaction" href="javascript:;">';
 				echo label_partition($disks[$i]['mountpoint']), '</a></td>';
 			 }
 			 else

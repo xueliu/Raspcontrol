@@ -2,11 +2,11 @@
 
 namespace lib;
 
-class Uptime {
+class Uptime {  
   
   public static function uptime() {
-
-    $uptime = shell_exec("cat /proc/uptime");
+    global $ssh;
+    $uptime = $ssh->shell_exec_noauth("cat /proc/uptime");
     $uptime = explode(" ", $uptime); 
 
     return self::readbleTime($uptime[0]);

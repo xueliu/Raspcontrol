@@ -2,17 +2,18 @@
 
 namespace lib;
 
-class Users {
+class Users {  
   
   public static function connected() {
+    global $ssh;
 
     $result = array();
 
-    $dataRaw = shell_exec("who --ips");
-    $dataRawDNS = shell_exec("who --lookup");
+    $dataRaw = $ssh->shell_exec_noauth("who --ips");
+    $dataRawDNS = $ssh->shell_exec_noauth("who --lookup");
     
     //patch for arch linux - the "who" binary doesnt support the --ips flag
-    if (empty($dataRaw)) $dataRaw = shell_exec("who");
+    if (empty($dataRaw)) $dataRaw = $ssh->shell_exec_noauth("who");
 
     foreach (explode ("\n", $dataRawDNS) as $line) {
       $line = preg_replace("/ +/", " ", $line);

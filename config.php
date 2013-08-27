@@ -20,17 +20,13 @@ if ($rewriting) {
   define('LOGOUT', './logout');
   define('DETAILS', './details');
   define('SERVICES', './services');
-  define('DISKS', './disks');
-  define('REBOOT', './reboot');
-  define('SHUTDOWN', './shutdown');
+  define('DISKS', './disks'); 
 }
 else {
   define('LOGOUT', './login.php?logout');
   define('DETAILS', './?page=details');
   define('SERVICES', './?page=services');
-  define('DISKS', './?page=disks');
-  define('REBOOT', './?action=reboot');
-  define('SHUTDOWN', './?action=shutdown');
+  define('DISKS', './?page=disks'); 
 }
 
 ?>

@@ -2,13 +2,14 @@
 
 namespace lib;
 
-class Storage {
+class Storage {   
   
   public static function hdd() {
-
+    global $ssh;
+	
     $result = array();
 
-    exec('df -T | grep -vE "tmpfs|rootfs|Filesystem"', $drivesarray);
+    $drivesarray = $ssh->exec_noauth('df -T | grep -vE "tmpfs|rootfs|Filesystem"');
     
     for ($i=0; $i<count($drivesarray); $i++) {
       $drivesarray[$i] = preg_replace('!\s+!', ' ', $drivesarray[$i]);
